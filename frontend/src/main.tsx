@@ -1,9 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { RouterProvider } from 'react-router-dom'
 import './index.css'
-import PaginaRegister from './pages/PaginaRegister'
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <PaginaRegister />
-  </StrictMode>,
+import AppRoutes from './AppRoutes'
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <AppRoutes />
+  </React.StrictMode>,
 )
+
+
+
+
