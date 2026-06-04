@@ -1,4 +1,4 @@
-import imagemLogin from '../assets/login-encurta-ae.svg'
+import imagemLogin from '../assets/login-encurta-ae.png'
 import ConfirmButton from './ui/ConfirmBotton'
 import InputField from './ui/InputField'  
 import {Link} from 'react-router-dom'
