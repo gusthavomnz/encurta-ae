@@ -1,6 +1,7 @@
 import imagemLogin from '../assets/login-encurta-ae.svg'
 import ConfirmButton from './ui/ConfirmBotton'
 import InputField from './ui/InputField'  
+import {Link} from 'react-router-dom'
 
 function CardLogin() {
   return (
@@ -17,7 +18,7 @@ function CardLogin() {
        </div>
         </form>
         <p className= "text-center md:text-left  font-light"> Ainda não fez o cadastro? {' '} 
-            <span className="text-blue-600 cursor-pointer">Cadastre-se</span>
+            <Link to="/register" className="text-blue-600 cursor-pointer">Cadastre-se</Link>
         </p>
     </div>
     </div>

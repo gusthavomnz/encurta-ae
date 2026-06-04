@@ -1,6 +1,7 @@
 import imagemRegister from  '../assets/login-encurta-ae.svg'
 import InputField from './ui/InputField'
 import ConfirmButton from './ui/ConfirmBotton'
+import {Link} from 'react-router-dom'
 
 
 
@@ -21,7 +22,7 @@ function CardRegister () {
        </div>
         </form>
         <p className= "text-center md:text-left font-light"> Já tem uma conta? {' '} 
-            <span className="text-blue-600 cursor-pointer">Faça Login</span>
+            <Link to="/login" className="text-blue-600 cursor-pointer" >Faça Login </Link>
         </p>
     </div>
     </div>
