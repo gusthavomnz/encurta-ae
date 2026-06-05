@@ -1,9 +1,11 @@
 import express from 'express';
 import { UserService } from './services/userService';
+import { linkService } from './services/linkService'
 
 const app = express();
 app.use(express.json());
 const userService = new UserService();
+const linkServiceInstance = new linkService();
 
 app.get('/test', (req, res) => {
   return res.json({ message: "API rodando perfeitamente!" });
@@ -16,6 +18,17 @@ try {
     } catch (error) {
         return res.status(400).json({ error: "Erro ao registrar usuário." });
     }
+});
+
+app.post('/encurtar', async (req, res) => {
+  try {
+    const newLink = await linkServiceInstance.createLink(req.body);
+    return res.status(201).json({message: "Id encurtado:", linkEncurtado: newLink?.shortCode});
+  } catch (error){
+      console.log(error)
+    return res.status(400).json({error: "Erro ao cadastrar link"})
+
+  }
 });
 
 
