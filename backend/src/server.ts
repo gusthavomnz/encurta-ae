@@ -14,7 +14,7 @@ app.get('/test', (req, res) => {
 app.post('/registrar', async (req, res) => {
   try {
     const newUserId = await userService.registerUser(req.body);
-    return res.status(201).json({ message: "Usuário registrado!", id: newUserId });
+    return res.status(201).json({ message: "Usuário registrado!", Usuario: newUserId });
   } catch (error) {
     return res.status(400).json({ error: "Erro ao registrar usuário." });
   }
@@ -23,11 +23,9 @@ app.post('/registrar', async (req, res) => {
 app.post('/encurtar', async (req, res) => {
   try {
     const newLink = await linkServiceInstance.createLink(req.body);
-    return res.status(201).json({message: "Id encurtado:", linkEncurtado: newLink?.shortCode});
+    return res.status(201).json({linkEncurtado: newLink});
   } catch (error){
-      console.log(error)
     return res.status(400).json({error: "Erro ao cadastrar link"})
-
   }
 });
 

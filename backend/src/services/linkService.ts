@@ -25,12 +25,14 @@ export class linkService {
 }
 
 
-
  createRandomShortCode(userIdComoPrefixo: string){
     const prefixoUser = String(userIdComoPrefixo).substring(0, 3);
     const aleatorio = crypto.randomBytes(2).toString("hex").substring(0, 3);
     const shortCodeUnique = `${prefixoUser}${aleatorio}`;
     return shortCodeUnique;
 }
+
+
+
 
 };
