@@ -5,8 +5,8 @@ import ConfirmButton from './ui/ConfirmBotton'
 function CardEncurtadorLink() {
     return (
         <div className="w-full h-full flex flex-col md:flex-row md:bg-white bg-[radial-gradient(#9ca3af_1px,transparent_1px)] bg-[size:20px_20px]">
-            {/* Imagem a esquerda */}
-            <div className="w-full h-[50vh] md:w-1/3 md:h-full flex justify-center items-center shrink-0 bg-white">
+            {/* Imagem a esquerda */}  <div className="w-full h-[50vh] md:w-1/3 md:h-full flex justify-center items-center shrink-0 bg-white">
+          
                 <img src={imagemEncurtadorLink} alt="Icon" className="h-full w-full object-contain" />
             </div>
 
