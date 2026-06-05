@@ -29,6 +29,13 @@ app.post('/encurtar', async (req, res) => {
   }
 });
 
+app.get('/allLinks/:UserId', async (req, res) => {
+  const userIdRequest = req.params.UserId
+  const allLinks =  await linkServiceInstance.getAllLinksByUserId(userIdRequest)
+  return res.status(201).json({links: allLinks})
+
+});
+
 
 const PORT = 3333;
 app.listen(PORT, () => {

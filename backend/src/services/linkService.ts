@@ -32,6 +32,14 @@ export class linkService {
     return shortCodeUnique;
 }
 
+     async getAllLinksByUserId(userIdRequest){
+        return await prisma.link.findMany({
+            where:{
+                userId: userIdRequest
+            }
+        })
+     }
+
 
 
 
