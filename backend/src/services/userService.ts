@@ -1,11 +1,11 @@
 import { prisma } from "../config/database";
-import { AuthTypes} from "../types/Auth";
+import { RegisterUser } from "../types/Auth";
 
 
 export class UserService {
 
 
-    async registerUser(userData: AuthTypes.RegisterUser) {
+    async registerUser(userData: RegisterUser) {
         const { name, email, password } = userData;
         await prisma.user.create({
             data: {

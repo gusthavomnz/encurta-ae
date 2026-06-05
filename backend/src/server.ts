@@ -12,12 +12,12 @@ app.get('/test', (req, res) => {
 });
 
 app.post('/registrar', async (req, res) => {
-try {
-        const newUser = await userService.registerUser(req.body);
-        return res.status(201).json({ message: "Usuário registrado!", id: newUser?.id });
-    } catch (error) {
-        return res.status(400).json({ error: "Erro ao registrar usuário." });
-    }
+  try {
+    const newUserId = await userService.registerUser(req.body);
+    return res.status(201).json({ message: "Usuário registrado!", id: newUserId });
+  } catch (error) {
+    return res.status(400).json({ error: "Erro ao registrar usuário." });
+  }
 });
 
 app.post('/encurtar', async (req, res) => {
