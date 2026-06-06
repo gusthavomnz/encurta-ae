@@ -8,3 +8,9 @@ export interface createLinkRequest {
 export interface LinkResponse {
     linkEncurtado: string
 }
+
+export interface updateLinkRequest {
+    idLinkRequest: string
+    idUserRequest: string
+    newExpiresAt: Date
+}

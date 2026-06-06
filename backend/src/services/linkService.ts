@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import { prisma } from "../config/database";
 import { createLinkRequest } from "../types/Links"
+import { updateLinkRequest} from "../types/Links"
 
 export class linkService {
 
@@ -39,6 +40,27 @@ export class linkService {
             }
         })
      }
+
+
+
+     async editDateLink(objetoRecebido: updateLinkRequest){
+        const  {idLinkRequest,newExpiresAt, idUserRequest} = objetoRecebido
+        const linkEditado = await prisma.link.updateMany({
+            where:{
+                id: idLinkRequest,
+                userId: idUserRequest,
+            },
+            data: { 
+                    expiresAt: new Date(newExpiresAt),
+                }
+            })
+            return await prisma.link.findUnique({
+                where: {
+                   id: idLinkRequest
+            }
+        })
+     }
+
 
 
 

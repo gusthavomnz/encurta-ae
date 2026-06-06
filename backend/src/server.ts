@@ -36,6 +36,15 @@ app.get('/allLinks/:UserId', async (req, res) => {
 
 });
 
+app.put('/alterarData', async (req,res) => {
+  try {
+    const novoLink = await linkServiceInstance.editDateLink(req.body)
+    return res.status(201).json({novolink: novoLink})
+  } catch(error){
+    return res.status(400).json({error: "Erro ao editar o link."})
+  }
+});
+
 
 const PORT = 3333;
 app.listen(PORT, () => {
