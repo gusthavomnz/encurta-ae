@@ -45,6 +45,15 @@ app.put('/alterarData', async (req,res) => {
   }
 });
 
+app.get('/:LinkEncurtado', async (req,res) => {
+let redirectUrl = await linkServiceInstance.retornarLinkOriginal(req.params.LinkEncurtado)
+
+if (!/^https?:\/\//i.test(redirectUrl)) {
+        redirectUrl = `https://${redirectUrl}`;
+    }
+return res.redirect(302, redirectUrl)
+});
+
 
 const PORT = 3333;
 app.listen(PORT, () => {
