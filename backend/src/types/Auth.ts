@@ -17,6 +17,6 @@ export interface LoginUserRequest {
 }
 
 export interface LoginUserResponse {
-    token: string;
+    userId: string;
 }
 
