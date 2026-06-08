@@ -11,9 +11,10 @@ interface CardListaLinksProps {
 }
 
 
-function CardListaLinks( listaLinksData: CardListaLinksProps, ){
+function CardListaLinks( listaLinksData: CardListaLinksProps ){
     
-    let dados[] = await fetchAllLinksUser(userId);
+    
+    // const dados = await fetchAllLinksUser(listaLinksData.userId);
 
 
     return (

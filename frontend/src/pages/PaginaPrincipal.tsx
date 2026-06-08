@@ -2,6 +2,10 @@ import CardEncurtadorLink from "../components/CardEncurtadorLink";
 import CardListaLinks from "../components/CardListaLinks";
 
 function PaginaPrincipal() {
+
+
+
+    
     return ( 
         <div className="flex flex-col w-screen min-h-screen overflow-y-auto md:overflow-hidden"> 
 

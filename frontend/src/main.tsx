@@ -4,9 +4,15 @@ import { RouterProvider } from 'react-router-dom'
 import './index.css'
 import AppRoutes from './AppRoutes'
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+const queryClient = new QueryClient()
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AppRoutes />
+    <QueryClientProvider client={queryClient}>
+          <AppRoutes />
+    </QueryClientProvider>
+
   </React.StrictMode>,
 )
 

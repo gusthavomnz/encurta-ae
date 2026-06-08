@@ -1,8 +1,10 @@
 import express from 'express';
+import cors from 'cors';
 import { UserService } from './services/userService';
 import { linkService } from './services/linkService'
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 const userService = new UserService();
 const linkServiceInstance = new linkService();
