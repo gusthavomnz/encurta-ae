@@ -25,70 +25,7 @@ function PaginaPrincipal() {
             <div className="h-screen  bg-white flex flex-row ">
             <div className="hidden md:block md:w-1/12 h-full bg-[radial-gradient(#9ca3af_1px,transparent_1px)] bg-[size:20px_20px]"> </div>
             <div className="flex flex-col  w-full gap-0.5">
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
-                <CardListaLinks/>
+                <p> card links aqui: </p>
 
                 
                 </div>

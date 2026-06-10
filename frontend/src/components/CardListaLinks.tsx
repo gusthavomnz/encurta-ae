@@ -1,5 +1,4 @@
 import imgCalendar from '../assets/editCalendar.png'
-import {fetchAllLinksUser} from '../hooks/useLinksData'
 
 interface CardListaLinksProps {
     id: string
