@@ -7,3 +7,15 @@ export interface LoginUserRequest {
 export interface LoginUserResponse {
     userId: string
 }
+
+export interface RegisterUserRequest {
+    name: string;
+    email: string;
+    password: string;
+}
+
+export interface RegisterUserResponse {
+    message: string,
+    Usuario: string
+
+}
