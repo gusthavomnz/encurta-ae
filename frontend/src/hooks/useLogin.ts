@@ -1,12 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { fetchLoginRequest } from "../services/authService";
 
-export function useLoginData() {
+export function useLogin() {
     const mutation = useMutation({
         mutationFn: fetchLoginRequest,
     });
-
-    console.log("passou aqui em useLoginData");
-
     return mutation;
 }
