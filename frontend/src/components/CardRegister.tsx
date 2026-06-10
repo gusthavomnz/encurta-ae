@@ -1,8 +1,8 @@
 import imagemRegister from  '../assets/login-encurta-ae.png'
 import InputField from './ui/InputField'
 import ConfirmButton from './ui/ConfirmBotton'
-import {Link} from 'react-router-dom'
-import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import { useRegister } from '../hooks/useRegister'
 
 
@@ -22,6 +22,17 @@ function CardRegister () {
   data
 } = useRegister()
 
+const navigate = useNavigate()
+
+useEffect(() => {
+  if (isSuccess && data) {
+    localStorage.setItem('userId', data.userId)
+    navigate('/home')
+  }
+},[isSuccess, data, navigate])
+
+
+
 
 
 const handleSubmit = (e: React.FormEvent) => {
@@ -32,7 +43,7 @@ const handleSubmit = (e: React.FormEvent) => {
     return
   }
 
-  if (password !== confirmPassword) {''
+if (password !== confirmPassword) {
     alert('Senhas não coincidem.')
     return
   }

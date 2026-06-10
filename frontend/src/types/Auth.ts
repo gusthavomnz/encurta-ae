@@ -16,6 +16,6 @@ export interface RegisterUserRequest {
 
 export interface RegisterUserResponse {
     message: string,
-    Usuario: string
+    userId: string
 
 }
