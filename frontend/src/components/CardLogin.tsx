@@ -3,18 +3,17 @@ import ConfirmButton from './ui/ConfirmBotton'
 import InputField from './ui/InputField'  
 import {Link, useNavigate} from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useLoginData} from '../hooks/useLinksData'
+import { useLogin} from '../hooks/useLogin'
+import React from "react";
 
 function CardLogin() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setSenha] = useState('')
-  const { mutate, isPending, isError, isSuccess, data } = useLoginData()
+  const { mutate, isPending, isError, isSuccess, data } = useLogin()
 
 useEffect(() => {
-  console.log('antes do ifs')
   if (isSuccess && data?.userId) {
-    console.log(data)
     localStorage.setItem('userId', data.userId)
     navigate('/home')
   }

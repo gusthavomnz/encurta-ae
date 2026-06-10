@@ -3,17 +3,47 @@ import InputField from './ui/InputField'
 import ConfirmButton from './ui/ConfirmBotton'
 import {Link} from 'react-router-dom'
 import React, { useState } from 'react'
+import { useRegister } from '../hooks/useRegister'
 
 
 
 function CardRegister () {
-  const [nomeCompleto, setNomeCompleto] = useState(0)
-  const [email, setEmail] = useState(0)
-  const [password, setPassword] = useState(0)
-  
-  const handleSubmit = (e: React) => {
 
+  const [name, setNomeCompleto] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  
+  const {
+  mutate,
+  isPending,
+  isSuccess,
+  isError,
+  data
+} = useRegister()
+
+
+
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
+
+  if (!email || !password || !name || !confirmPassword) {
+    alert('Por favor, preencha todos os campos.')
+    return
   }
+
+  if (password !== confirmPassword) {''
+    alert('Senhas não coincidem.')
+    return
+  }
+
+  mutate({
+    name,
+    email,
+    password
+  })
+}
+ 
   return (
     <div className="max-w-3xl flex flex-col md:flex-row bg-white items-stretch sm:rounded-2xl sm:p-6">
       <img src={imagemRegister} alt="Imagem de Registro" className="md:w-1/2 w-full" />
@@ -21,11 +51,21 @@ function CardRegister () {
         <p className="text-center md-text-left text-6xl font-bold text-gray-700 ">Encurta Aê</p>
         <p className="text-xl font-light text-gray-700 mt-4 md:text-sm px-1.5">Crie sua conta para acessar o seu novo encurtador de links favorito. </p>
         <form onSubmit={handleSubmit} className="flex flex-col md:items-center gap-4 mt-6 md:w-full w-full px-2 pb-4">
-          <InputField placeholder="Nome Completo" type="text" />
-          <InputField placeholder="Digite seu email" type="email" />
-          <InputField placeholder="Digite sua senha" type="password" />
-          <InputField placeholder="Confirme sua senha" type="password" />
+
+          <InputField placeholder="Nome Completo" type="text"
+          value={name} onChange ={(click)=> setNomeCompleto(click.target.value)} />
+
+          <InputField placeholder="Digite seu email" type="email" 
+          value={email} onChange={(click) => setEmail(click.target.value)}/>
+
+
+          <InputField placeholder="Digite sua senha" type="text" 
+          value={password} onChange={(click) => setPassword(click.target.value)}/>
+
+          <InputField placeholder="Confirme sua senha" type="text" 
+          value={confirmPassword} onChange={(click) => setConfirmPassword(click.target.value)}/>
            <div className = "w-full h-10 justify-center items-center flex pt-4">
+
       <ConfirmButton textoBotao="Cadastrar" />
        </div>
         </form>
