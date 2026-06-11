@@ -5,7 +5,12 @@ export interface createLinkRequest{
 }
 
 
+
 export interface allLinkRequest {
+    Links: getLinkRequest[];
+}
+
+export interface getLinkRequest {
     id: string
     shortCode: string
     redirectUrl: string

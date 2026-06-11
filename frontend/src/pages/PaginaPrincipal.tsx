@@ -1,11 +1,15 @@
 import CardEncurtadorLink from "../components/CardEncurtadorLink";
 import CardListaLinks from "../components/CardListaLinks";
+import type { allLinkRequest } from "../types/Link";
+import { useListAllLinks } from "../hooks/useListAllLinks";
+import type { getLinkRequest } from "../types/Link";
 
 function PaginaPrincipal() {
-    const data = []
+    const userId = localStorage.getItem('userId')
+    const {data, isLoading} = useListAllLinks(userId || "")
+    const listaDeLinks = data?.Links || [];
 
-
-
+console.log("O que tem dentro do DATA?", data);
     
     return ( 
         <div className="flex flex-col w-screen min-h-screen overflow-y-auto md:overflow-hidden"> 
@@ -23,7 +27,16 @@ function PaginaPrincipal() {
             <div className="h-screen  bg-white flex flex-row ">
             <div className="hidden md:block md:w-1/12 h-full bg-[radial-gradient(#9ca3af_1px,transparent_1px)] bg-[size:20px_20px]"> </div>
             <div className="flex flex-col  w-full gap-0.5">
-                {data.map(cardLinks =><CardListaLinks)}
+                {!isLoading && listaDeLinks.map((link: getLinkRequest) => (
+                <CardListaLinks 
+                key={link.id}
+                id={link.id}
+                shortCode={link.shortCode} 
+                expiresAt={link.expiresAt} 
+                redirectUrl={link.redirectUrl}
+                clickCount={link.clickCount}
+                  />
+                  ))}
 
                 
                 </div>
