@@ -30,7 +30,7 @@ model Link {
   redirectUrl String
   expiresAt   DateTime
   createdAt   DateTime @default(now())
-
+  clickCount Int      @default(0)
   userId      String
   user        User     @relation(fields: [userId], references: [id])
 
