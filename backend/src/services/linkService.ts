@@ -14,8 +14,7 @@ export class linkService {
             redirectUrl,
             expiresAt,
             shortCode,
-            
-            
+             
             user: {
             connect: { id: usuarioId}
             }
@@ -74,7 +73,6 @@ export class linkService {
                 }
             }
         })
-
 
         const urlOriginal = objetoLink.redirectUrl;
         return urlOriginal;

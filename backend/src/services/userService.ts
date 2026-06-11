@@ -22,7 +22,7 @@ export class UserService {
             email: newUser.email
         }
         return registerUserResponse;
-}
+    }
 
     async loginUser(req: LoginUserRequest){
         const {email, password} = req;

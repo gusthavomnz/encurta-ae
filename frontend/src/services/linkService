@@ -1,8 +1,0 @@
-import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-export const fetchAllLinksUser = async (userId: string): Promise<any> => {
-    const response = await axios.get(API_URL + '/allLinks/' + userId)
-    return response.data;
-}
