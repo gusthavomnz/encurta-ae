@@ -37,11 +37,11 @@ function CardEncurtadorLink() {
 
            {/* Conteudo + enviar link a ser encurtado: */}
             <div className="w-full h-[50vh] md:w-2/3 md:h-full shrink-0 md:px-32 md:py-32 px-2 py-2 md:bg-white ">
-                <div className="md:w-full md:h-full border-4 border-amber-200 bg-amber-100 rounded-4xl justify-center items-center py-16 p-4 ">
-                    <p className= "text-gray-800 font-bold text-4xl  px-2"> Encurte seu link e utilize como quiser!</p>
+                <div className="md:w-full md:h-full border-4 border-amber-200 bg-white rounded-4xl justify-center items-center py-16 p-4 ">
+                    <p className= "text-gray-800 font-bold text-4xl px-2 " > Encurte seu link e utilize como quiser!</p>
                     <form onSubmit={handleSubmit}className="w-full h-full flex flex-col justify-center bg-green items-center gap-4 p-4"> 
-                        <input type = "text" placeholder = "Cole seu link aqui..." value={redirectUrl} onChange={(clicou) => setRedirectUrl(clicou.target.value)} className= "w-100 h-10  h-8 bg-white rounded-2xl border-2 border-amber-200" />
-                        <input type = "date" placeholder = "Cole sua data aqui..." value={expiresAt} onChange={(clicou) => setExpiresAt(clicou.target.value)} className= "w-100 h-10  h-8 bg-white rounded-2xl border-2 border-amber-200" />
+                        <input type = "text" placeholder = "Cole seu link aqui..." value={redirectUrl} onChange={(clicou) => setRedirectUrl(clicou.target.value)} className= "w-full h-12  bg-white rounded-2xl border-2 border-amber-200" />
+                        <input type = "date" placeholder = "Cole sua data aqui..." value={expiresAt} onChange={(clicou) => setExpiresAt(clicou.target.value)} className= "w-full h-12   bg-white rounded-2xl border-2 border-amber-200" />
                         
                         <ConfirmButton textoBotao= "Encurtar"
                          />
