@@ -1,33 +1,43 @@
-# Encurta-aê 🔗
+# Encurta-aê 📎
 
-> Encurta aê, o encurtador de links feito para você.
+## Encurtador de URLs com autenticação de usuário, controle de expiração e geração de QR Code.
 
-![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-
+[![](https://skillicons.dev/icons?i=ts,react,nodejs,tailwind,express,mysql)](https://skillicons.dev)
 ---
 
 ## Sobre o projeto
 
-O **encurta-aê** é uma aplicação web de encurtamento de URLs com autenticação de usuário. Cada pessoa cadastrada pode gerar links curtos, acompanhar todos os que já criou e controlar por quanto tempo cada um ficará ativo. O objetivo foi construir um produto funcional do zero, cobrindo autenticação, persistência e redirecionamento em produção.
+O **Encurta-aê** é uma aplicação web fullstack de encurtamento de URLs. Usuários autenticados podem criar links curtos com código único, acompanhar todos os links gerados e definir datas de expiração para cada um deles.
+
+O projeto foi desenvolvido com o objetivo de cobrir um fluxo completo de produto: autenticação, persistência de dados, regras de negócio (expiração) e redirecionamento em produção.
 
 ---
 
 ## Funcionalidades
 
-- 🔐: Cadastro e login de usuário
-- ✂️: Encurtamento de URLs com código único gerado automaticamente
-- 📋: Listagem de todos os links criados pelo usuário
-- 📅: Edição da data de expiração de um link
-- ↗️: Redirecionamento automático ao acessar o link curto
-- 📷: Geração de QR Code para cada link encurtado
+- **Autenticação** — cadastro e login de usuário com sessão protegida
+- **Encurtamento** — geração de código único para cada URL cadastrada
+- **Dashboard** — listagem de todos os links criados pelo usuário autenticado
+- **Expiração** — edição da data de validade de cada link
+- **Redirecionamento** — acesso ao link curto redireciona automaticamente para a URL original
+- **QR Code** — geração de QR Code individual para cada link encurtado
 
+---
 
-## Autor
+## Arquitetura
 
-Feito por **Gusthavo Menezes** 
+```
+encurta-ae/
+├── frontend/          # React + TS + Tailwind CSS
+└── backend/           # Node.js + TS + Express + Prisma + MySQL
+```
+
+A aplicação segue uma arquitetura cliente-servidor desacoplada. O frontend consome a API REST do backend via HTTP, e o banco de dados é gerenciado pelo Prisma ORM.
+
+---
+
+## Diagrama de Entidade e Relacionamento
+
+![Diagrama ER](frontend/src/assets/encurtaAeER.png)
+
+Feito por **Gusthavo Menezes** — [Confira meu LinkedIn](https://www.linkedin.com/in/gusthavomnz) ·
