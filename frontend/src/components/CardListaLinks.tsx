@@ -10,13 +10,14 @@ interface CardListaLinksProps {
 
 
 function CardListaLinks( { id, shortCode, redirectUrl, clickCount, expiresAt }: CardListaLinksProps ){
-    
+const urlDoFront = window.location.origin;
+const linkEncurtadoCompleto = `${urlDoFront}/${shortCode}`;
 const dataFormatada = new Date(expiresAt).toLocaleDateString('pt-BR');
 
     return (
         <div className="bg-black  w-full h-10 p-0.5 flex flex-row justify-between ">
             <div className="bg-white  w-10/24 h-full p-0.5 flex items-center  ">
-                <p className='font-normal text-[18px]'> {shortCode} </p>
+                <p className='font-normal text-[18px]'> {linkEncurtadoCompleto} </p>
             </div>
 
             <div className="bg-white w-10/24 h-full  flex items-center">

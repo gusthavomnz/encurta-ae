@@ -8,9 +8,6 @@ function PaginaPrincipal() {
     const userId = localStorage.getItem('userId')
     const {data, isLoading} = useListAllLinks(userId || "")
     const listaDeLinks = data?.Links || [];
-
-console.log("O que tem dentro do DATA?", data);
-    
     return ( 
         <div className="flex flex-col w-screen min-h-screen overflow-y-auto md:overflow-hidden"> 
 
