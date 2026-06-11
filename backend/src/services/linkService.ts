@@ -64,11 +64,18 @@ export class linkService {
      
 
      async retornarLinkOriginal(urlEncurtada: string){
-        const objetoLink = await prisma.link.findUnique({
-            where:{
+        const objetoLink = await prisma.link.update({
+            where: {
                 shortCode: urlEncurtada
+            },
+            data: {
+                clickCount: {
+                    increment: 1
+                }
             }
         })
+
+
         const urlOriginal = objetoLink.redirectUrl;
         return urlOriginal;
      }
