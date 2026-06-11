@@ -3,3 +3,17 @@ export interface createLinkRequest{
     expiresAt: Date,
     usuarioId: string
 }
+
+
+
+export interface allLinkRequest {
+    Links: getLinkRequest[];
+}
+
+export interface getLinkRequest {
+    id: string
+    shortCode: string
+    redirectUrl: string
+    clickCount: number
+    expiresAt: Date
+}

@@ -36,8 +36,16 @@ export class linkService {
         return await prisma.link.findMany({
             where:{
                 userId: userIdRequest
+            },
+            select: {
+             id: true,
+             shortCode: true,
+             redirectUrl: true,
+             clickCount: true,
+             expiresAt: true
             }
         })
+
      }
 
 

@@ -45,7 +45,7 @@ app.post('/encurtar', async (req, res) => {
 app.get('/allLinks/:UserId', async (req, res) => {
   const userIdRequest = req.params.UserId
   const allLinks =  await linkServiceInstance.getAllLinksByUserId(userIdRequest)
-  return res.status(201).json({links: allLinks})
+  return res.status(201).json({Links: allLinks})
 
 });
 
