@@ -1,12 +1,9 @@
 import imgCalendar from '../assets/editCalendar.png'
 
 interface CardListaLinksProps {
-    id: string
     shortCode: string
     redirectUrl: string
     expiresAt: Date
-    createdAt: Date
-    userId: string
 }
 
 
