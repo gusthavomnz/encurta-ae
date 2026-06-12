@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { UserService } from './services/userService';
-import { linkService } from './services/linkService'
+import { linkService } from './services/linkService';
 
 const app = express();
 app.use(cors());
@@ -65,6 +65,12 @@ if (!/^https?:\/\//i.test(redirectUrl)) {
         redirectUrl = `https://${redirectUrl}`;
     }
 return res.redirect(302, redirectUrl)
+});
+
+app.post('/qrcode', async (req,res) => {
+  const { url } = req.body;
+  let codigoImagem = await linkServiceInstance.criarQrCode(url)
+  return res.status(201).json({qrCode: codigoImagem})
 });
 
 

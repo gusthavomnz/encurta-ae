@@ -2,6 +2,11 @@ import crypto from "crypto";
 import { prisma } from "../config/database";
 import { createLinkRequest } from "../types/Links"
 import { updateLinkRequest} from "../types/Links"
+import axios from "axios";
+import 'dotenv/config';
+import QRCode from "qrcode";
+
+const QR_CODE_API = process.env.QR_CODE_API as string;
 
 export class linkService {
 
@@ -84,6 +89,14 @@ export class linkService {
 
         const urlOriginal = objetoLink.redirectUrl;
         return urlOriginal;
+     }
+
+
+     async criarQrCode(url: string){
+        console.log('antes do await data url')
+        console.log(url)
+        const codigoImagem  = await QRCode.toDataURL(url)
+        return codigoImagem;
      }
 
 
