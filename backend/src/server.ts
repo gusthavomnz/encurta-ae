@@ -59,12 +59,18 @@ app.put('/alterarData', async (req,res) => {
 });
 
 app.get('/:LinkEncurtado', async (req,res) => {
-let redirectUrl = await linkServiceInstance.retornarLinkOriginal(req.params.LinkEncurtado)
+    try {
+        const redirectUrl = await linkServiceInstance.retornarLinkOriginal(req.params.LinkEncurtado)
 
-if (!/^https?:\/\//i.test(redirectUrl)) {
-        redirectUrl = `https://${redirectUrl}`;
+        if (!redirectUrl) {
+            return res.status(404).json({error: "Link não encontrado"})
+        }
+
+        const url = /^https?:\/\//i.test(redirectUrl) ? redirectUrl : `https://${redirectUrl}`;
+        return res.status(200).json({link: url})
+    } catch (error) {
+        return res.status(404).json({error: "Link não encontrado"})
     }
-return res.redirect(302, redirectUrl)
 });
 
 app.post('/qrcode', async (req,res) => {
@@ -72,6 +78,8 @@ app.post('/qrcode', async (req,res) => {
   let codigoImagem = await linkServiceInstance.criarQrCode(url)
   return res.status(201).json({qrCode: codigoImagem})
 });
+
+
 
 
 const PORT = 3333;

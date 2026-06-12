@@ -10,7 +10,12 @@ export const fetchAllLinksUser = async (userId: string): Promise<allLinkRequest>
 }
 
 export const postLink = async(data: createLinkRequest): Promise<any> => {
-    console.log(data.expiresAt)
     const response = await axios.post(API_URL + '/encurtar', data)
+    return response.data;
+}
+
+
+export const searchOriginalLink = async(code: string): Promise<any> => {
+    const response = await axios.get(API_URL + '/' + code)
     return response.data;
 }
