@@ -93,8 +93,6 @@ export class linkService {
 
 
      async criarQrCode(url: string){
-        console.log('antes do await data url')
-        console.log(url)
         const codigoImagem  = await QRCode.toDataURL(url)
         return codigoImagem;
      }
