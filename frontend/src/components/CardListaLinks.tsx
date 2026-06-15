@@ -1,8 +1,7 @@
-import imgCalendar from "../assets/editCalendar.png";
-import imgViewsLink from "../assets/visualizacoesLink.png";
-import imgLixeira from "../assets/iconDelete.png";
+
 import CardLogin from "./CardLogin";
 import { useCreateQrCode } from "../hooks/useCreateQrCode";
+import { CalendarIcon, TrashIcon, EyeOpenIcon, ClipboardCopyIcon } from "@radix-ui/react-icons"
 
 interface CardListaLinksProps {
   id: string;
@@ -27,6 +26,11 @@ const { refetch, data: qrCodeData, isLoading } = useCreateQrCode(linkEncurtadoCo
   refetch(); 
 }; 
 
+const handleButtonCopyLink = () => {
+    navigator.clipboard.writeText(linkEncurtadoCompleto)
+    alert("Link copiado!");
+}
+
   const previewRedirectUrl = redirectUrl
     .replace(/^https?:\/\//, "")
     .substring(0, 22);
@@ -35,14 +39,17 @@ const { refetch, data: qrCodeData, isLoading } = useCreateQrCode(linkEncurtadoCo
 
   return (
     <div className=" w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl overflow-hidden border-2">
-      <div className="bg-white h-1/2 md:h-full flex flex-row">
+      <div className=" h-1/2 md:h-full flex flex-row">
         <div className="flex items-center truncate px-2">
           <p className="px-2 text-xl">{linkEncurtadoCompleto} </p>
+          <button onClick={handleButtonCopyLink}>
+            <ClipboardCopyIcon/> 
+          </button>
         </div>
 
-        <div className="flex  justify-end text-2xl px-2 flex-row  items-center">
-          <img src={imgViewsLink} className="p-2 h-full items-center " />
-          <span>{clickCount}</span>
+        <div className="flex justify-end text-2xl px-2 flex-row  items-center">
+          <EyeOpenIcon/>
+          <span className="px-2 text-xl p-2">{clickCount}</span>
         </div>
       </div>
 
@@ -60,18 +67,14 @@ const { refetch, data: qrCodeData, isLoading } = useCreateQrCode(linkEncurtadoCo
 
         <div className="h-full flex flex-row shrink-0">
           <button onClick={(e) => console.log("Ainda não implementei editar expiração!") }className="bg-white h-full w-12 hover:bg-gray-100 transition-colors flex items-center justify-center border-r border-gray-200">
-            <img
-              src={imgCalendar}
-              className="h-full p-2.5"
-              alt="Editar Calendário"
-            />
+           <CalendarIcon/>
           </button>
 
           <button
             onClick={handleButtonClickQrCode}
             className="h-full w-12  flex items-center justify-center"
           >
-            <img src={imgLixeira} className="h-full p-2.5" alt="Deletar" />
+            <TrashIcon/>
           </button>
         </div>
       </div>
