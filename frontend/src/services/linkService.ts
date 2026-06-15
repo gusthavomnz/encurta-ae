@@ -19,3 +19,8 @@ export const searchOriginalLink = async(code: string): Promise<any> => {
     const response = await axios.get(API_URL + '/' + code)
     return response.data;
 }
+
+export const generateQrCodeByLink = async(urlCompleta: string): Promise<string> => {
+    const response = await axios.post(API_URL + '/qrcode', {url: urlCompleta})
+    return response.data;
+}

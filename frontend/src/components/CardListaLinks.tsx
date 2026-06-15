@@ -2,6 +2,7 @@ import imgCalendar from "../assets/editCalendar.png";
 import imgViewsLink from "../assets/visualizacoesLink.png";
 import imgLixeira from "../assets/iconDelete.png";
 import CardLogin from "./CardLogin";
+import { useCreateQrCode } from "../hooks/useCreateQrCode";
 
 interface CardListaLinksProps {
   id: string;
@@ -18,8 +19,14 @@ function CardListaLinks({
   clickCount,
   expiresAt,
 }: CardListaLinksProps) {
-  const urlDoFront = window.location.origin;
+      const urlDoFront = window.location.origin;
   const linkEncurtadoCompleto = `${urlDoFront}/${shortCode}`;
+
+const { refetch, data: qrCodeData, isLoading } = useCreateQrCode(linkEncurtadoCompleto);
+ const handleButtonClickQrCode = () => {
+  refetch(); 
+}; 
+
   const previewRedirectUrl = redirectUrl
     .replace(/^https?:\/\//, "")
     .substring(0, 22);
@@ -61,7 +68,7 @@ function CardListaLinks({
           </button>
 
           <button
-            onClick={(e) => console.log("Ainda não implementei deletar!")}
+            onClick={handleButtonClickQrCode}
             className="h-full w-12  flex items-center justify-center"
           >
             <img src={imgLixeira} className="h-full p-2.5" alt="Deletar" />
