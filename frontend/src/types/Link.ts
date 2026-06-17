@@ -17,3 +17,9 @@ export interface getLinkRequest {
     clickCount: number
     expiresAt: Date
 }
+
+export interface updateDateLinkRequest {
+    idLinkRequest: string
+    idUserRequest: string
+    newExpiresAt: Date
+}

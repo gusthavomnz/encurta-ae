@@ -1,6 +1,7 @@
 import axios from "axios";
 import type { createLinkRequest } from "../types/Link";
 import type { allLinkRequest } from "../types/Link";
+import type { updateDateLinkRequest } from "../types/Link";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -23,4 +24,9 @@ export const searchOriginalLink = async(code: string): Promise<any> => {
 export const generateQrCodeByLink = async(urlCompleta: string): Promise<string> => {
     const response = await axios.post(API_URL + '/qrcode', {url: urlCompleta})
     return response.data;
+}
+
+export const editExpiresLink = async(data: updateDateLinkRequest): Promise<any> => {
+ const response = await axios.put(API_URL + '/alterarData', data)
+ return response.data;
 }
