@@ -26,6 +26,8 @@ function DeleteLinkModal({
 
   if (isOpen == false) return null;
 
+  const 
+
   return (
     <div className="h-full  w-full flex justify-center items-center z-10 fixed inset-0 bg-black/50 backdrop-blur-md">
       <div className="bg-gray-100 w-100 h-100 rounded-2xl relative flex flex-col justify-between overflow-hidden">

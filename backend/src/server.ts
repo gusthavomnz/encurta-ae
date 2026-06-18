@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { application } from 'express';
 import cors from 'cors';
 import { UserService } from './services/userService';
 import { linkService } from './services/linkService';
@@ -77,6 +77,17 @@ app.post('/qrcode', async (req,res) => {
   const { url } = req.body;
   let codigoImagem = await linkServiceInstance.criarQrCode(url)
   return res.status(201).json({qrCode: codigoImagem})
+});
+
+app.delete('/delete', async (req,res) => {
+  const {userId, linkId} = req.body;
+  let ifDelete = await linkServiceInstance.deletarLink(userId,linkId)
+  if (ifDelete == true) {
+    return res.status(200).json({ifDelete})
+  } else {
+    return res.status(400).json({ifDelete})
+  }
+
 });
 
 

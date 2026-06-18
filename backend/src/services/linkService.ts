@@ -103,7 +103,18 @@ export class linkService {
         const codigoImagem  = await QRCode.toDataURL(url)
         return codigoImagem;
      }
+     
 
+    async deletarLink(userId: string,linkId: string): Promise<boolean> {
+    const resultado = await prisma.link.deleteMany({
+        where: {
+            userId: userId,
+            id: linkId
+        }
+    });
+    
+    return resultado.count > 0; 
+}
 
 
 
