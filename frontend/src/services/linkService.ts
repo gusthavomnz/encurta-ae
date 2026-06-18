@@ -2,6 +2,7 @@ import axios from "axios";
 import type { createLinkRequest } from "../types/Link";
 import type { allLinkRequest } from "../types/Link";
 import type { updateDateLinkRequest } from "../types/Link";
+import type { deleteLinkRequest } from "../types/Link";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,4 +30,10 @@ export const generateQrCodeByLink = async(urlCompleta: string): Promise<string> 
 export const editExpiresLink = async(data: updateDateLinkRequest): Promise<any> => {
  const response = await axios.put(API_URL + '/alterarData', data)
  return response.data;
+}
+
+
+export const deleteLink = async(data: deleteLinkRequest): Promise<boolean> => {
+const response = await axios.delete(API_URL + '/delete', { data })
+return response.data.ifDelete;
 }

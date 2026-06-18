@@ -23,3 +23,8 @@ export interface updateDateLinkRequest {
     idUserRequest: string
     newExpiresAt: Date
 }
+
+export interface deleteLinkRequest {
+   userId: string,
+   linkId: string
+}
