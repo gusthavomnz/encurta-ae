@@ -4,6 +4,7 @@ import { useEditData } from "../hooks/useEditDateLink";
 import { CalendarIcon, TrashIcon, EyeOpenIcon, ClipboardCopyIcon } from "@radix-ui/react-icons";
 import { useState, useRef } from "react";
 import ModalEditExpiresAt from "./ModalEditExpiresAt";
+import DeleteLinkModal from "./DeleteLinkModal";
 
 interface CardListaLinksProps {
   id: string;
@@ -44,14 +45,15 @@ function CardListaLinks({
 
   const dataDiaMesAno = editedExpiresAt ? editedExpiresAt : (expiresAt ? expiresAt.substring(0, 10) : "");
   const HoraMinuto = expiresAt ? expiresAt.substring(12, 19) : "";
-  const [modalCalendario, SetModalCalendario] = useState(false)
+  const [modalCalendario, setModalCalendario] = useState(false)
+  const [modalDeletarLink, setModalDeletarLink] = useState(false)
 
   function AbrirModalCalendario(){
-    SetModalCalendario(true)
+    setModalCalendario(true)
   }
 
-  function FecharModalCalendario(){
-    SetModalCalendario(false)
+  function AbrirModalDeletarLink(){
+  setModalDeletarLink(true)
   }
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +78,7 @@ function CardListaLinks({
   };
 
   return (
-    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl overflow-hidden border-2 bg-white relative">
+    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl  border-2 bg-white ">
       <div className="h-1/2 md:h-full flex flex-row">
         <div className="flex items-center truncate px-2">
           <p className="px-2 text-xl">{linkEncurtadoCompleto}</p>
@@ -114,7 +116,7 @@ function CardListaLinks({
 
           <button
             type="button"
-            onClick={handleButtonClickQrCode}
+            onClick={AbrirModalDeletarLink}
             className="h-full w-12 flex items-center justify-center text-red-500"
           >
             <TrashIcon/>
@@ -124,10 +126,22 @@ function CardListaLinks({
 
       <ModalEditExpiresAt 
         isOpen={modalCalendario} 
-        onClose={FecharModalCalendario}
+        onClose={()=> setModalCalendario(false)}
         idLink={id}
-        setEditedExpiresAt={setEditedExpiresAt}
       />
+
+
+      <DeleteLinkModal
+      isOpen={modalDeletarLink}
+      onClose={()=> setModalDeletarLink(false)}
+      linkEncurtado={linkEncurtadoCompleto}
+      linkOriginal={redirectUrl}
+      dataExpiracao={dataDiaMesAno}
+      linkId={id}
+
+      />
+
+
     </div>
   );
 }
