@@ -56,11 +56,13 @@ function CardListaLinks({
   setModalDeletarLink(true)
   }
 
+const idUserLogado = localStorage.getItem("userId");
+
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const novaDataStr = e.target.value;
     if (!novaDataStr) return;
 
-    const idUserLogado = localStorage.getItem("userId");
+  
     if (!idUserLogado) {
       alert("Usuário não autenticado!");
       return;
@@ -138,7 +140,7 @@ function CardListaLinks({
       linkOriginal={redirectUrl}
       dataExpiracao={dataDiaMesAno}
       linkId={id}
-
+      userId={idUserLogado}
       />
 
 

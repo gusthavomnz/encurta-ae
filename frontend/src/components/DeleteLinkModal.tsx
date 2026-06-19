@@ -4,6 +4,8 @@ import ConfirmButton from "./ui/ConfirmBotton";
 import { Link2Icon } from "@radix-ui/react-icons";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import {GlobeIcon} from "@radix-ui/react-icons";
+import { useDeleteLink } from "../hooks/useDeleteLink";
+import type { deleteLinkRequest } from "../types/Link";
 
 interface ModalEditExpiresAtProps {
   isOpen: boolean;
@@ -12,6 +14,7 @@ interface ModalEditExpiresAtProps {
   linkEncurtado: string;
   linkOriginal: string;
   dataExpiracao: string;
+  userId: string
 }
 
 function DeleteLinkModal({
@@ -21,12 +24,21 @@ function DeleteLinkModal({
   linkEncurtado,
   linkOriginal,
   dataExpiracao,
+  userId
 }: ModalEditExpiresAtProps) {
   const [modalDeletarLink, setModalDeletarLink] = useState(true);
+  const { mutate: setLogicaDeletarLink, isPending, isSuccess, isError } = useDeleteLink()
+  
 
   if (isOpen == false) return null;
 
-  const 
+
+  const handleDeletarLink = async (e: React.FormEvent)=> {
+    const data: deleteLinkRequest = {linkId, userId} 
+    setLogicaDeletarLink(data)
+    console.log('passou no handle')
+  }
+
 
   return (
     <div className="h-full  w-full flex justify-center items-center z-10 fixed inset-0 bg-black/50 backdrop-blur-md">
@@ -80,7 +92,7 @@ function DeleteLinkModal({
 
           <button
             type="button"
-            onClick={(e) => console.log("cliquei no deletar!")}
+            onClick={handleDeletarLink}
             className="bg-gray-900 w-1/2 h-10 rounded-2xl border-2 border-gray-200 shadow-2xl shadow-white"
           >
             <h1 className="font-bold text-white font-sans"> Deletar </h1>
