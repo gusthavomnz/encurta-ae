@@ -1,4 +1,4 @@
-import CardEncurtadorLink from "../components/CardEncurtadorLink";
+import CardEncurtadorLink from "../components/HeaderHome";
 import CardListaLinks from "../components/CardListaLinks";
 import type { allLinkRequest } from "../types/Link";
 import { useListAllLinks } from "../hooks/useListAllLinks";
