@@ -9,6 +9,6 @@ export function useCreateQrCode(linkEncurtadoCompleto: string){
         retry: 2,
         enabled: false,
     })
-    console.log(query)
+
     return query;
 }

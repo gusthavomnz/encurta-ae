@@ -14,7 +14,5 @@ export function useDeleteLink() {
             queryClient.invalidateQueries({ queryKey: ['card-links'] });
         }
     });
-    console.log('passou no hook')
-
     return mutation;
 }

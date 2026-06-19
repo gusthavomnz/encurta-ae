@@ -36,7 +36,6 @@ function DeleteLinkModal({
   const handleDeletarLink = async (e: React.FormEvent)=> {
     const data: deleteLinkRequest = {linkId, userId} 
     setLogicaDeletarLink(data)
-    console.log('passou no handle')
   }
 
 
