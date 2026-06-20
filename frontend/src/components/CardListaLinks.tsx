@@ -5,6 +5,8 @@ import { CalendarIcon, TrashIcon, EyeOpenIcon, ClipboardCopyIcon } from "@radix-
 import { useState, useRef } from "react";
 import ModalEditExpiresAt from "./ModalEditExpiresAt";
 import DeleteLinkModal from "./DeleteLinkModal";
+import qrCodeIcon from "../assets/qr-code.png"
+import { QrCodeModal } from "./QrCodeModal";
 
 interface CardListaLinksProps {
   id: string;
@@ -47,6 +49,7 @@ function CardListaLinks({
   const HoraMinuto = expiresAt ? expiresAt.substring(12, 19) : "";
   const [modalCalendario, setModalCalendario] = useState(false)
   const [modalDeletarLink, setModalDeletarLink] = useState(false)
+  const [modalGerarQrCode, setModalQrCode] = useState(false)
 
   function AbrirModalCalendario(){
     setModalCalendario(true)
@@ -55,14 +58,19 @@ function CardListaLinks({
   function AbrirModalDeletarLink(){
   setModalDeletarLink(true)
   }
+ 
+  function AbrirModalGerarQrCode(){
+    setModalQrCode(true)
+  }
+
+
 
 const idUserLogado = localStorage.getItem("userId");
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const novaDataStr = e.target.value;
     if (!novaDataStr) return;
-
-  
+70
     if (!idUserLogado) {
       alert("Usuário não autenticado!");
       return;
@@ -80,8 +88,8 @@ const idUserLogado = localStorage.getItem("userId");
   };
 
   return (
-    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl  border-1 border-white bg-mist-700 font-sans text-white">
-      <div className="h-1/2 md:h-full flex flex-row">
+    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl  border-1 border-white bg-mist-700 font-sans">
+      <div className="h-1/2 md:h-full flex flex-row text-white">
         <div className="flex items-center truncate px-2">
           <p className="px-2 text-xl">{linkEncurtadoCompleto}</p>
           <button onClick={handleButtonCopyLink} className="">
@@ -95,11 +103,19 @@ const idUserLogado = localStorage.getItem("userId");
         </div>
       </div>
 
-      <div className="h-1/2 md:h-full md:w-1/2 flex flex-row items-center justify-between">
+      <div className="h-1/2 md:h-full md:w-1/2 flex flex-row items-center justify-between text-white">
         <div className=" h-full flex items-center px-2 flex-1 min-w-0">
           <p className="px-2 text-xl truncate">
             {previewRedirectUrl}...
           </p>
+        </div>
+        <div className="w-12 h-full flex items-center justify-center ">
+          <button className = "hover:bg-mist-400/50 w-full h-full mb-1 p-1 " onClick={AbrirModalGerarQrCode}>
+          <img className=""src={qrCodeIcon}/>
+
+          </button>
+
+
         </div>
 
         <div className="flex flex-col h-full shrink-0 w-24 py-0 m-0 p-0 leading-none text-[12px] justify-center px-1">
@@ -141,6 +157,12 @@ const idUserLogado = localStorage.getItem("userId");
       dataExpiracao={dataDiaMesAno}
       linkId={id}
       userId={idUserLogado}
+      />
+
+      <QrCodeModal
+      isOpen={modalGerarQrCode}
+      onClose={()=> setModalQrCode(false)}
+      url={id}
       />
 
 

@@ -53,8 +53,8 @@ function CardEncurtador() {
             className="w-full h-12 bg-white/5 border border-white/10 rounded-2xl px-4 text-white placeholder-white/40 outline-none focus:border-white/60 focus:bg-white/10 transition-colors"
           />
 
-        <button className="w-full px-4 h-10 border-2 border-white/50 rounded-2xl "> 
-            <p className="font-sans items-center text-xl text-white px-2 flex justify-center gap-4"> Encurtar <LightningBoltIcon/> </p>
+        <button className="w-full px-4 h-10 border-2 border-white/50 rounded-2xl hover:bg-mist-400/20"> 
+            <p className="font-sans items-center text-xl text-white px-2 flex justify-center gap-4 "> Encurtar <LightningBoltIcon/> </p>
 
         </button>
         </form>
