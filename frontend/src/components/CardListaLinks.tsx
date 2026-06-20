@@ -80,7 +80,7 @@ const idUserLogado = localStorage.getItem("userId");
   };
 
   return (
-    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl  border-2 bg-white ">
+    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl  border-1 border-white bg-mist-700 font-sans text-white">
       <div className="h-1/2 md:h-full flex flex-row">
         <div className="flex items-center truncate px-2">
           <p className="px-2 text-xl">{linkEncurtadoCompleto}</p>
@@ -96,8 +96,8 @@ const idUserLogado = localStorage.getItem("userId");
       </div>
 
       <div className="h-1/2 md:h-full md:w-1/2 flex flex-row items-center justify-between">
-        <div className="bg-white h-full flex items-center px-2 flex-1 min-w-0">
-          <p className="px-2 text-xl text-gray-600 truncate">
+        <div className=" h-full flex items-center px-2 flex-1 min-w-0">
+          <p className="px-2 text-xl truncate">
             {previewRedirectUrl}...
           </p>
         </div>
@@ -111,15 +111,15 @@ const idUserLogado = localStorage.getItem("userId");
           <button 
             type="button"
             onClick={AbrirModalCalendario} 
-            className="bg-white h-full w-12 hover:bg-gray-100 transition-colors flex items-center justify-center border-l border-r border-gray-200"
+            className=" h-full w-12 hover:bg-mist-400/50 transition-colors flex items-center justify-center border-l border-r border-gray-200"
           >
-            <CalendarIcon/>
+            <CalendarIcon className="text-white"/>
           </button>
 
           <button
             type="button"
             onClick={AbrirModalDeletarLink}
-            className="h-full w-12 flex items-center justify-center text-red-500"
+            className="h-full w-12 flex items-center justify-center text-red-500 hover:bg-mist-400/50"
           >
             <TrashIcon/>
           </button>
