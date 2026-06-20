@@ -54,10 +54,10 @@ function DeleteLinkModal({
           <p className="flex text-left mt-4 font-bold  text-3xl font-sans py-0.5 px-2 ">
             Deletar link encurtado
           </p>
-          <spam className="flex text-left text-xs px-2">
+          <span className="flex text-left text-xs px-2">
             Atenção: essa ação é permanente e irreversivel. Caso deseja apenas
             alterar a data de expiração, clique aqui.
-          </spam>
+          </span>
         </div>
 
         <div className="flex flex-col text-left px-2">

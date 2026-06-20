@@ -24,7 +24,7 @@ export const searchOriginalLink = async(code: string): Promise<any> => {
 
 export const generateQrCodeByLink = async(urlCompleta: string): Promise<string> => {
     const response = await axios.post(API_URL + '/qrcode', {url: urlCompleta})
-    return response.data;
+    return response.data.qrCode;
 }
 
 export const editExpiresLink = async(data: updateDateLinkRequest): Promise<any> => {
