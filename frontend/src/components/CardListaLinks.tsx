@@ -158,7 +158,7 @@ const idUserLogado = localStorage.getItem("userId");
       <QrCodeModal
         isOpen={modalGerarQrCode}
         onClose={()=> setModalQrCode(false)}
-        url={id}
+        url={linkEncurtadoCompleto}
       />
     </div>
   );
