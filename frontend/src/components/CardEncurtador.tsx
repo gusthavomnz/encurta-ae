@@ -1,8 +1,6 @@
-import ConfirmButton from "./ui/ConfirmBotton";
 import { useState } from "react";
 import { useCreateLink } from "../hooks/useCreateLink";
-import { ButtonIcon } from "@radix-ui/react-icons";
-import {LightningBoltIcon} from "@radix-ui/react-icons";
+import { LightningBoltIcon, CalendarIcon } from "@radix-ui/react-icons";
 
 function CardEncurtador() {
   const [redirectUrl, setRedirectUrl] = useState("");
@@ -26,39 +24,54 @@ function CardEncurtador() {
 
     mutate({ redirectUrl, expiresAt: new Date(expiresAt), usuarioId });
   };
+
   return (
-    <div className="w-full h-[50vh] md:w-2/3 md:h-full shrink-0 md:px-32 md:py-32 px-2 py-2 backdrop-blur-2xl">
-      
-      <div className="md:w-full md:h-full border-1 border-white/50 bg-mist-700/50 backdrop-blur-2xl justify-center items-center py-16 p-4 rounded-4xl ">
-        <p className="font-sans text-white px-4 text-2xl">
-          Encurte seu link e utilize como quiser!
-        </p>
-        <span className="font-sans text-white/50 text-sm px-4"> Links curtos, rastreáveis e com expiração automática. </span>
-        <form
-          onSubmit={handleSubmit}
-          className="w-full h-full flex flex-col justify-center bg-green items-center gap-4 p-4"
-        >
+    <div className="w-full h-full flex flex-col items-center justify-center px-4">
+      <div className="flex flex-col items-center text-center mb-10">
+        <h1 className="font-sans text-white text-5xl md:text-6xl font-semibold">
+          Encurta-Aê
+        </h1>
+        <h2 className="font-sans text-white/70 text-lg md:text-xl mt-4 max-w-xl">
+          Seu encurtador de links favorito! Como podemos te ajudar hoje?
+        </h2>
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-lg flex flex-col items-center gap-3"
+      >
+        {/* Barra principal: input + botão juntos, estilo search-bar moderna */}
+        <div className="w-full flex items-center bg-white rounded-full pl-5 pr-1.5 py-1.5 shadow-lg shadow-black/20 focus-within:ring-2 focus-within:ring-[#940600] transition-all">
           <input
             type="text"
-            placeholder="Cole seu link aqui..."
+            placeholder="Cole o link que você quer encurtar"
             value={redirectUrl}
-            onChange={(clicou) => setRedirectUrl(clicou.target.value)}
-            className="w-full h-12 bg-white/5 border border-white/10 rounded-2xl px-4 text-white placeholder-white/40 outline-none focus:border-white/60 focus:bg-white/10 transition-colors"
+            onChange={(e) => setRedirectUrl(e.target.value)}
+            className="flex-1 h-10 bg-transparent text-[#520400] placeholder-[#940600]/50 outline-none text-sm md:text-base"
           />
-          <input 
+        </div>
+
+        {/* Data de expiração, como um campo secundário discreto */}
+        <label className="w-full flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 text-white/70 text-sm focus-within:border-white/40 transition-colors">
+          <CalendarIcon className="text-white/50" />
+          <span className="text-white/50">Expira em:</span>
+          <input
             type="date"
-            placeholder="Cole sua data aqui..."
             value={expiresAt}
-            onChange={(clicou) => setExpiresAt(clicou.target.value)}
-            className="w-full h-12 bg-white/5 border border-white/10 rounded-2xl px-4 text-white placeholder-white/40 outline-none focus:border-white/60 focus:bg-white/10 transition-colors"
+            onChange={(e) => setExpiresAt(e.target.value)}
+            className="bg-transparent text-white outline-none flex-1 [color-scheme:dark]"
           />
+        </label>
 
-        <button className="w-full px-4 h-10 border-2 border-white/50 rounded-2xl hover:bg-mist-400/20"> 
-            <p className="font-sans items-center text-xl text-white px-2 flex justify-center gap-4 "> Encurtar <LightningBoltIcon/> </p>
-
+        <button
+          type="submit"
+          disabled={isPending}
+          className="flex items-center gap-2 bg-white hover:bg-white/90 text-[#940600] font-semibold text-sm md:text-base px-5 h-10 rounded-full transition-colors disabled:opacity-60 disabled:cursor-not-allowed w-full justify-center items-center"
+        >
+          {isPending ? "Encurtando..." : "Encurtar"}
+          <LightningBoltIcon />
         </button>
-        </form>
-      </div>
+      </form>
     </div>
   );
 }

@@ -70,7 +70,7 @@ const idUserLogado = localStorage.getItem("userId");
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const novaDataStr = e.target.value;
     if (!novaDataStr) return;
-70
+
     if (!idUserLogado) {
       alert("Usuário não autenticado!");
       return;
@@ -88,11 +88,11 @@ const idUserLogado = localStorage.getItem("userId");
   };
 
   return (
-    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl  border-1 border-white bg-mist-700 font-sans">
-      <div className="h-1/2 md:h-full flex flex-row text-white">
+    <div className="w-full h-24 md:h-12 md:w-4/5 p-0.5 flex flex-col md:flex-row justify-between rounded-2xl border border-white bg-neutral-100 font-sans">
+      <div className="h-1/2 md:h-full flex flex-row text-gray-900">
         <div className="flex items-center truncate px-2">
           <p className="px-2 text-xl">{linkEncurtadoCompleto}</p>
-          <button onClick={handleButtonCopyLink} className="">
+          <button onClick={handleButtonCopyLink}>
             <ClipboardCopyIcon/> 
           </button>
         </div>
@@ -103,22 +103,19 @@ const idUserLogado = localStorage.getItem("userId");
         </div>
       </div>
 
-      <div className="h-1/2 md:h-full md:w-1/2 flex flex-row items-center justify-between text-white">
-        <div className=" h-full flex items-center px-2 flex-1 min-w-0">
+      <div className="h-1/2 md:h-full md:w-1/2 flex flex-row items-center justify-between text-gray-900">
+        <div className="h-full flex items-center px-2 flex-1 min-w-0">
           <p className="px-2 text-xl truncate">
             {previewRedirectUrl}...
           </p>
         </div>
-        <div className="w-12 h-full flex items-center justify-center ">
-          <button className = "hover:bg-mist-400/50 w-full h-full mb-1 p-1 " onClick={AbrirModalGerarQrCode}>
-          <img className=""src={qrCodeIcon}/>
-
+        <div className="w-12 h-full flex items-center justify-center">
+          <button className="hover:bg-mist-400/50 w-full h-full mb-1 p-1" onClick={AbrirModalGerarQrCode}>
+            <img src={qrCodeIcon}/>
           </button>
-
-
         </div>
 
-        <div className="flex flex-col h-full shrink-0 w-24 py-0 m-0 p-0 leading-none text-[12px] justify-center px-1">
+        <div className="flex flex-col h-full shrink-0 w-24 leading-none text-[12px] justify-center px-1">
           <p>Exp: {dataDiaMesAno}</p>
           <p>às: {HoraMinuto}</p>
         </div>
@@ -127,9 +124,9 @@ const idUserLogado = localStorage.getItem("userId");
           <button 
             type="button"
             onClick={AbrirModalCalendario} 
-            className=" h-full w-12 hover:bg-mist-400/50 transition-colors flex items-center justify-center border-l border-r border-gray-200"
+            className="h-full w-12 hover:bg-mist-400/50 transition-colors flex items-center justify-center border-l border-r border-gray-200"
           >
-            <CalendarIcon className="text-white"/>
+            <CalendarIcon className="text-gray-900"/>
           </button>
 
           <button
@@ -148,24 +145,21 @@ const idUserLogado = localStorage.getItem("userId");
         idLink={id}
       />
 
-
       <DeleteLinkModal
-      isOpen={modalDeletarLink}
-      onClose={()=> setModalDeletarLink(false)}
-      linkEncurtado={linkEncurtadoCompleto}
-      linkOriginal={redirectUrl}
-      dataExpiracao={dataDiaMesAno}
-      linkId={id}
-      userId={idUserLogado}
+        isOpen={modalDeletarLink}
+        onClose={()=> setModalDeletarLink(false)}
+        linkEncurtado={linkEncurtadoCompleto}
+        linkOriginal={redirectUrl}
+        dataExpiracao={dataDiaMesAno}
+        linkId={id}
+        userId={idUserLogado}
       />
 
       <QrCodeModal
-      isOpen={modalGerarQrCode}
-      onClose={()=> setModalQrCode(false)}
-      url={id}
+        isOpen={modalGerarQrCode}
+        onClose={()=> setModalQrCode(false)}
+        url={id}
       />
-
-
     </div>
   );
 }
