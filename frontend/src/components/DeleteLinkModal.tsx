@@ -7,14 +7,13 @@ import {GlobeIcon} from "@radix-ui/react-icons";
 import { useDeleteLink } from "../hooks/useDeleteLink";
 import type { deleteLinkRequest } from "../types/Link";
 
-interface ModalEditExpiresAtProps {
+interface DeleteLinkModalProps {
   isOpen: boolean;
   onClose: () => void;
   linkId: string;
   linkEncurtado: string;
   linkOriginal: string;
   dataExpiracao: string;
-  userId: string
 }
 
 function DeleteLinkModal({
@@ -24,20 +23,17 @@ function DeleteLinkModal({
   linkEncurtado,
   linkOriginal,
   dataExpiracao,
-  userId
-}: ModalEditExpiresAtProps) {
+}: DeleteLinkModalProps) {
   const [modalDeletarLink, setModalDeletarLink] = useState(true);
   const { mutate: setLogicaDeletarLink, isPending, isSuccess, isError } = useDeleteLink()
   
 
   if (isOpen == false) return null;
 
-
   const handleDeletarLink = async (e: React.FormEvent)=> {
-    const data: deleteLinkRequest = {linkId, userId} 
+    const data: deleteLinkRequest = {linkId} 
     setLogicaDeletarLink(data)
   }
-
 
   return (
     <div className="h-full  w-full flex justify-center items-center z-10 fixed inset-0 bg-black/50 backdrop-blur-md">

@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AuthGuard from "./components/AuthGuard";
 import PaginaLogin from "./pages/PaginaLogin";
 import PaginaRegister from "./pages/PaginaRegister";
 import PaginaNotFound from "./pages/PaginaNotFound";
@@ -15,7 +16,9 @@ return (
         <Route path="/login" element={<PaginaLogin/>} />
         <Route path="/register" element={<PaginaRegister/>} /> 
         <Route path="/404" element={<PaginaNotFound/>}/>
-        <Route path ="/home" element={<PaginaPrincipal/>} />
+        <Route element={<AuthGuard />}>
+            <Route path="/home" element={<PaginaPrincipal/>} />
+        </Route>
     </Routes> 
 </BrowserRouter>
 )

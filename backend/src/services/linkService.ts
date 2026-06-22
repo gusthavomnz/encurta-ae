@@ -10,25 +10,20 @@ const QR_CODE_API = process.env.QR_CODE_API as string;
 
 export class linkService {
 
-
-    async createLink(linkData: createLinkRequest){
-        const { redirectUrl, expiresAt, usuarioId} = linkData;
-        const shortCode = this.createRandomShortCode(usuarioId)
+    async createLink(linkData: createLinkRequest, userId: string){
+        const { redirectUrl, expiresAt } = linkData;
+        const shortCode = this.createRandomShortCode(userId)
         const linkCriado = await prisma.link.create({
             data:{
             redirectUrl,
             expiresAt,
             shortCode,
-             
-            user: {
-            connect: { id: usuarioId}
-            }
+            userId
          }
         }
     )
     return linkCriado;
 }
-
 
  createRandomShortCode(userIdComoPrefixo: string){
     const prefixoUser = String(userIdComoPrefixo).substring(0, 3);
@@ -37,10 +32,10 @@ export class linkService {
     return shortCodeUnique;
 }
 
-     async getAllLinksByUserId(userIdRequest){
+     async getAllLinksByUserId(userId: string){
         return await prisma.link.findMany({
             where:{
-                userId: userIdRequest
+                userId: userId
             },
             select: {
              id: true,
@@ -53,27 +48,23 @@ export class linkService {
 
      }
 
-
-
-     async editDateLink(objetoRecebido: updateLinkRequest){
-        const  {idLinkRequest,newExpiresAt, idUserRequest} = objetoRecebido
+     async editDateLink(objetoRecebido: updateLinkRequest, userId: string){
+        const {linkId, newExpiresAt} = objetoRecebido
         const linkEditado = await prisma.link.updateMany({
             where:{
-                id: idLinkRequest,
-                userId: idUserRequest,
+                id: linkId,
+                userId: userId,
             },
-            data: { 
+            data: {
                     expiresAt: new Date(newExpiresAt),
                 }
             })
             return await prisma.link.findUnique({
                 where: {
-                   id: idLinkRequest
+                   id: linkId
             }
         })
      }
-
-     
 
      async retornarLinkOriginal(urlEncurtada: string){
         const objetoLink = await prisma.link.findUnique({
@@ -98,25 +89,20 @@ export class linkService {
         return objetoLink.redirectUrl;
      }
 
-
      async criarQrCode(url: string){
         const codigoImagem  = await QRCode.toDataURL(url)
         return codigoImagem;
      }
-     
 
-    async deletarLink(userId: string,linkId: string): Promise<boolean> {
+    async deletarLink(userId: string, linkId: string): Promise<boolean> {
     const resultado = await prisma.link.deleteMany({
         where: {
             userId: userId,
             id: linkId
         }
     });
-    
-    return resultado.count > 0; 
+
+    return resultado.count > 0;
 }
-
-
-
 
 };

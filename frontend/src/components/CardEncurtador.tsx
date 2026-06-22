@@ -5,7 +5,6 @@ import { LightningBoltIcon, CalendarIcon } from "@radix-ui/react-icons";
 function CardEncurtador() {
   const [redirectUrl, setRedirectUrl] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
-  const usuarioId = localStorage.getItem("userId") || "";
 
   const { mutate, isSuccess, isError, isPending } = useCreateLink();
 
@@ -22,7 +21,7 @@ function CardEncurtador() {
       return;
     }
 
-    mutate({ redirectUrl, expiresAt: new Date(expiresAt), usuarioId });
+    mutate({ redirectUrl, expiresAt: new Date(expiresAt) });
   };
 
   return (
@@ -40,7 +39,6 @@ function CardEncurtador() {
         onSubmit={handleSubmit}
         className="w-full max-w-lg flex flex-col items-center gap-3"
       >
-        {/* Barra principal: input + botão juntos, estilo search-bar moderna */}
         <div className="w-full flex items-center bg-white rounded-full pl-5 pr-1.5 py-1.5 shadow-lg shadow-black/20 focus-within:ring-2 focus-within:ring-[#940600] transition-all">
           <input
             type="text"
@@ -51,7 +49,6 @@ function CardEncurtador() {
           />
         </div>
 
-        {/* Data de expiração, como um campo secundário discreto */}
         <label className="w-full flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 text-white/70 text-sm focus-within:border-white/40 transition-colors">
           <CalendarIcon className="text-white/50" />
           <span className="text-white/50">Expira em:</span>

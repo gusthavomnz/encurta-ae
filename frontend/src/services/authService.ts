@@ -1,19 +1,15 @@
-import axios from "axios";
+import api from "./api";
 import type { LoginUserRequest } from "../types/Auth";
 import type { LoginUserResponse } from "../types/Auth";
 import type { RegisterUserRequest } from "../types/Auth";
 import type { RegisterUserResponse } from "../types/Auth";
 
-
-const API_URL = import.meta.env.VITE_API_URL;
-
-
 export const fetchLoginRequest = async(data: LoginUserRequest): Promise<LoginUserResponse> => {
-    const response = await axios.post(API_URL + '/login', data)
+    const response = await api.post('/login', data)
     return response.data;
 }
 
 export const fetchRegisterRequest = async(data: RegisterUserRequest): Promise<RegisterUserResponse> => {
-    const response = await axios.post(API_URL + '/registrar', data)
+    const response = await api.post('/registrar', data)
     return response.data;
 }

@@ -1,5 +1,3 @@
-import CardLogin from "./CardLogin";
-import { useCreateQrCode } from "../hooks/useCreateQrCode";
 import { useEditData } from "../hooks/useEditDateLink";
 import { CalendarIcon, TrashIcon, EyeOpenIcon, ClipboardCopyIcon } from "@radix-ui/react-icons";
 import { useState, useRef } from "react";
@@ -26,12 +24,7 @@ function CardListaLinks({
   const urlDoFront = window.location.origin;
   const linkEncurtadoCompleto = `${urlDoFront}/${shortCode}`;
 
-  const { refetch } = useCreateQrCode(linkEncurtadoCompleto);
   const { mutate: atualizarDataNoBanco } = useEditData();
-
-  const handleButtonClickQrCode = () => {
-    refetch(); 
-  }; 
 
   const handleButtonCopyLink = () => {
     navigator.clipboard.writeText(linkEncurtadoCompleto);
@@ -63,26 +56,16 @@ function CardListaLinks({
     setModalQrCode(true)
   }
 
-
-
-const idUserLogado = localStorage.getItem("userId");
-
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const novaDataStr = e.target.value;
     if (!novaDataStr) return;
-
-    if (!idUserLogado) {
-      alert("Usuário não autenticado!");
-      return;
-    }
 
     setEditedExpiresAt(novaDataStr);
 
     const dataObjeto = new Date(novaDataStr);
 
     atualizarDataNoBanco({
-      idLinkRequest: id,
-      idUserRequest: idUserLogado,
+      linkId: id,
       newExpiresAt: dataObjeto
     });
   };
@@ -152,7 +135,6 @@ const idUserLogado = localStorage.getItem("userId");
         linkOriginal={redirectUrl}
         dataExpiracao={dataDiaMesAno}
         linkId={id}
-        userId={idUserLogado}
       />
 
       <QrCodeModal

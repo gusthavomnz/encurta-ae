@@ -1,8 +1,6 @@
-
 export interface createLinkRequest {
     redirectUrl: string
     expiresAt: Date
-    usuarioId: string
 }
 
 export interface LinkResponse {
@@ -10,7 +8,6 @@ export interface LinkResponse {
 }
 
 export interface updateLinkRequest {
-    idLinkRequest: string
-    idUserRequest: string
+    linkId: string
     newExpiresAt: Date
 }

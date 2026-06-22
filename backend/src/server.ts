@@ -1,7 +1,8 @@
-import express, { application } from 'express';
+import express from 'express';
 import cors from 'cors';
 import { UserService } from './services/userService';
 import { linkService } from './services/linkService';
+import { authMiddleware } from './middleware/authMiddleware';
 
 const app = express();
 app.use(cors());
@@ -32,26 +33,24 @@ app.post('/login', async(req,res) => {
   }
 });
 
-
-app.post('/encurtar', async (req, res) => {
+app.post('/encurtar', authMiddleware, async (req, res) => {
   try {
-    const newLink = await linkServiceInstance.createLink(req.body);
+    const newLink = await linkServiceInstance.createLink(req.body, (req as any).userId);
     return res.status(201).json({linkEncurtado: newLink});
   } catch (error){
     return res.status(400).json({error: "Erro ao cadastrar link"})
   }
 });
 
-app.get('/allLinks/:UserId', async (req, res) => {
-  const userIdRequest = req.params.UserId
-  const allLinks =  await linkServiceInstance.getAllLinksByUserId(userIdRequest)
+app.get('/allLinks', authMiddleware, async (req, res) => {
+  const allLinks =  await linkServiceInstance.getAllLinksByUserId((req as any).userId)
   return res.status(201).json({Links: allLinks})
 
 });
 
-app.put('/alterarData', async (req,res) => {
+app.put('/alterarData', authMiddleware, async (req,res) => {
   try {
-    const novoLink = await linkServiceInstance.editDateLink(req.body)
+    const novoLink = await linkServiceInstance.editDateLink(req.body, (req as any).userId)
     return res.status(201).json({novolink: novoLink})
   } catch(error){
     return res.status(400).json({error: "Erro ao editar o link."})
@@ -79,9 +78,9 @@ app.post('/qrcode', async (req,res) => {
   return res.status(201).json({qrCode: codigoImagem})
 });
 
-app.delete('/delete', async (req,res) => {
-  const {userId, linkId} = req.body;
-  let ifDelete = await linkServiceInstance.deletarLink(userId,linkId)
+app.delete('/delete', authMiddleware, async (req,res) => {
+  const { linkId } = req.body;
+  let ifDelete = await linkServiceInstance.deletarLink((req as any).userId, linkId)
   if (ifDelete == true) {
     return res.status(200).json({ifDelete})
   } else {
@@ -90,13 +89,7 @@ app.delete('/delete', async (req,res) => {
 
 });
 
-
-
-
 const PORT = 3333;
 app.listen(PORT, () => {
   console.log(` Servidor backend rodando em http://localhost:${PORT}`);
 });
-
-
-

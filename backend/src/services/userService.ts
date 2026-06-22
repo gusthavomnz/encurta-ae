@@ -17,9 +17,7 @@ export class UserService {
         });
 
         const registerUserResponse: RegisterUserResponse = {
-            id: newUser.id,
-            name: newUser.name,
-            email: newUser.email
+            userId: newUser.id
         }
         return registerUserResponse;
     }
@@ -41,4 +39,3 @@ export class UserService {
     }
 
 }
-

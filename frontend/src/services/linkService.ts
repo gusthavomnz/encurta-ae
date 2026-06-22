@@ -1,39 +1,35 @@
-import axios from "axios";
+import api from "./api";
 import type { createLinkRequest } from "../types/Link";
 import type { allLinkRequest } from "../types/Link";
 import type { updateDateLinkRequest } from "../types/Link";
 import type { deleteLinkRequest } from "../types/Link";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-export const fetchAllLinksUser = async (userId: string): Promise<allLinkRequest> => {
-    const response = await axios.get(API_URL + '/allLinks/' + userId)
+export const fetchAllLinksUser = async (): Promise<allLinkRequest> => {
+    const response = await api.get('/allLinks')
     return response.data;
 }
 
 export const postLink = async(data: createLinkRequest): Promise<any> => {
-    const response = await axios.post(API_URL + '/encurtar', data)
+    const response = await api.post('/encurtar', data)
     return response.data;
 }
 
-
 export const searchOriginalLink = async(code: string): Promise<any> => {
-    const response = await axios.get(API_URL + '/' + code)
+    const response = await api.get('/' + code)
     return response.data;
 }
 
 export const generateQrCodeByLink = async(urlCompleta: string): Promise<string> => {
-    const response = await axios.post(API_URL + '/qrcode', {url: urlCompleta})
+    const response = await api.post('/qrcode', {url: urlCompleta})
     return response.data.qrCode;
 }
 
 export const editExpiresLink = async(data: updateDateLinkRequest): Promise<any> => {
- const response = await axios.put(API_URL + '/alterarData', data)
+ const response = await api.put('/alterarData', data)
  return response.data;
 }
 
-
 export const deleteLink = async(data: deleteLinkRequest): Promise<boolean> => {
-const response = await axios.delete(API_URL + '/delete', { data })
+const response = await api.delete('/delete', { data })
 return response.data.ifDelete;
 }
