@@ -5,6 +5,9 @@ import PaginaRegister from "./pages/PaginaRegister";
 import PaginaNotFound from "./pages/PaginaNotFound";
 import PaginaPrincipal from "./pages/PaginaPrincipal";
 import PaginaRedirecionamento from "./pages/PaginaRedirecionamento";
+import PaginaMeusLinks from "./pages/PaginaMeusLinks";
+import PaginaLinksBio from "./pages/PaginaLinksBio";
+import PaginaEstatisticas from "./pages/PaginaEstatisticas";
 
 function AppRoutes() {
 
@@ -16,6 +19,9 @@ return (
         <Route path="/login" element={<PaginaLogin/>} />
         <Route path="/register" element={<PaginaRegister/>} /> 
         <Route path="/404" element={<PaginaNotFound/>}/>
+        <Route path="/meus-links" element={<PaginaMeusLinks/>}/>
+        <Route path="/links-bio" element={<PaginaLinksBio/>}/>
+        <Route path="/estatisticas" element={<PaginaEstatisticas/>}/>
         <Route element={<AuthGuard />}>
             <Route path="/home" element={<PaginaPrincipal/>} />
         </Route>

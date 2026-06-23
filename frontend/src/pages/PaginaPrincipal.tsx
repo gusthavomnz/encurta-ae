@@ -3,13 +3,15 @@ import CardListaLinks from "../components/CardListaLinks";
 import type { allLinkRequest } from "../types/Link";
 import { useListAllLinks } from "../hooks/useListAllLinks";
 import type { getLinkRequest } from "../types/Link";
-
+import LeftMenu from "../components/LeftSideBar";
 function PaginaPrincipal() {
     const {data, isLoading} = useListAllLinks()
     const listaDeLinks = data?.Links || [];
-    return ( 
-        <div className="flex flex-col w-screen min-h-screen overflow-y-auto md:overflow-hidden "> 
 
+    return ( 
+    
+        <div className="flex flex-col w-screen min-h-full overflow-y-auto md:overflow-hidden "> 
+           <LeftMenu/>
 
                 <div className="w-full h-full">
                     <CardEncurtadorLink />
