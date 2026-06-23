@@ -5,9 +5,10 @@ function PaginaPrincipal() {
 
     return ( 
     
-        <div className="flex flex-col w-screen min-h-full overflow-y-auto md:overflow-hidden bg-yellow-600"> 
+        <div className="flex flex-row w-screen h-screen  bg-slate-900 flex items-center"> 
            <LeftMenu/>
-           <CardEncurtador/>
+                       <CardEncurtador/>
+
             
         </div>
     )

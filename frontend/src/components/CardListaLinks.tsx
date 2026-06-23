@@ -54,7 +54,7 @@ function CardListaLinks({
     <div className="w-full flex flex-row items-center justify-between p-4 rounded-xl border border-slate-200 bg-white shadow-xs hover:shadow-sm transition-shadow font-sans gap-4">
       <div className="flex-1 min-w-0 flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          <p className="text-lg font-semibold text-purple-950 truncate">
+          <p className="text-lg font-semibold text-slate-800 truncate">
             {linkEncurtadoCompleto}
           </p>
           <button

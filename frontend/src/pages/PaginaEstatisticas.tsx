@@ -1,9 +1,15 @@
+import LeftMenu from "../components/LeftSideBar";
+
 export function PaginaEstatisticas(){
 
     return (
-        <div>
-            <h1> Confira as estatisticas dos seus Links. Em breve</h1>
-        </div>
+       <div className="flex flex-row w-screen h-screen   bg-slate-300" > 
+                  <LeftMenu/>
+                  <h1>
+                   Função de Links em bio [Em breve!]
+                  </h1>
+                   
+               </div>
     )
 }
 

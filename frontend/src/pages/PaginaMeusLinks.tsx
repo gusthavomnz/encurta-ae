@@ -9,7 +9,7 @@ function PaginaMeusLinks() {
   const listaDeLinks = data?.Links || [];
 
   return (
-    <div className="flex flex-row w-screen h-screen bg-slate-50 font-sans overflow-hidden">
+    <div className="flex flex-row w-screen h-screen bg-slate-300  font-sans overflow-hidden">
       
 
       <LeftMenu />
@@ -19,7 +19,7 @@ function PaginaMeusLinks() {
         
 
         <header className="w-full max-w-5xl mx-auto pt-12 px-8 flex flex-col gap-1">
-          <h1 className="text-3xl font-bold text-purple-950 font-display">
+          <h1 className="text-3xl font-bold text-slate-800  font-display">
             Meus Links Encurtados
           </h1>
           <p className="text-slate-500 text-sm">
