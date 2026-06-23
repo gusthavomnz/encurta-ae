@@ -5,36 +5,52 @@ import type { getLinkRequest } from "../types/Link";
 import LeftMenu from "../components/LeftSideBar";
 
 function PaginaMeusLinks() {
+  const { data, isLoading } = useListAllLinks();
+  const listaDeLinks = data?.Links || [];
 
-    const {data, isLoading} = useListAllLinks()
-    const listaDeLinks = data?.Links || [];
+  return (
+    <div className="flex flex-row w-screen h-screen bg-slate-50 font-sans overflow-hidden">
+      
 
-    return (
-        <div>
-        <LeftMenu/>
-
+      <LeftMenu />
 
 
-       <div className="h-screen  w-full flex flex-row bg-gradient-to-b from-[#27272A] via-[#1C1C1F] to-[#0A0A0B] ">
-            <div className="flex flex-col  items-center w-full gap-1 py-20 ">
-                {!isLoading && listaDeLinks.map((link: getLinkRequest) => (
-                <CardListaLinks 
-                key={link.id}
-                id={link.id}
-                shortCode={link.shortCode} 
-                expiresAt={link.expiresAt} 
-                redirectUrl={link.redirectUrl}
-                clickCount={link.clickCount}
-                  />
-                  ))}
+      <div className="flex-1 h-full overflow-y-auto flex flex-col">
+        
 
-                
-                </div>
-    
-                
+        <header className="w-full max-w-5xl mx-auto pt-12 px-8 flex flex-col gap-1">
+          <h1 className="text-3xl font-bold text-purple-950 font-display">
+            Meus Links Encurtados
+          </h1>
+          <p className="text-slate-500 text-sm">
+            Gerencie, copie e acompanhe as estatísticas de acesso dos seus links.
+          </p>
+        </header>
+
+        <main className="w-full max-w-5xl mx-auto px-8 py-8 flex flex-col gap-4 flex-1">
+          
+
+          {!isLoading && listaDeLinks.length === 0 && (
+            <div className="p-6 text-center border border-slate-200 rounded-2xl bg-white text-slate-500">
+              Nenhum link encurtado por aqui ainda.
             </div>
-            </div>
-    )
+          )}
+
+          {listaDeLinks.map((link: getLinkRequest) => (
+            <CardListaLinks
+              key={link.id}
+              id={link.id}
+              shortCode={link.shortCode}
+              expiresAt={link.expiresAt}
+              redirectUrl={link.redirectUrl}
+              clickCount={link.clickCount}
+            />
+          ))}
+        </main>
+
+      </div>
+    </div>
+  );
 }
 
 export default PaginaMeusLinks;

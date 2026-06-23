@@ -40,7 +40,7 @@ export function LeftMenu() {
   ];
 
   return (
-    <div className="md:h-full  md:w-1/8 h-1/12 w-full bg-white z-1 fixed top-0 left-0 p-2 overflow-hidden border-r-2 border-gray-700">
+    <div className="md:h-full  md:w-1/8 h-1/12 w-full bg-white z-1 top-0 left-0 p-2 overflow-hidden border-r-2 border-gray-700">
       <div className="bg-amber-900 w-full flex flex-col items-center mt-10 mb-10">
         <h1 className="text-4xl text-purple-950 font-bold Space Grotesk">
           {" "}
