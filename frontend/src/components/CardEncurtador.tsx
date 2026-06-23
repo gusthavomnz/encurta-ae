@@ -39,13 +39,13 @@ function CardEncurtador() {
         onSubmit={handleSubmit}
         className="w-full max-w-lg flex flex-col items-center gap-3"
       >
-        <div className="w-full flex items-center bg-white rounded-full pl-5 pr-1.5 py-1.5 shadow-lg shadow-black/20 focus-within:ring-2 focus-within:ring-[#940600] transition-all">
+        <div className="w-full flex items-center bg-white rounded-full pl-5 pr-1.5 py-1.5 shadow-lg shadow-black/20 ">
           <input
             type="text"
             placeholder="Cole o link que você quer encurtar"
             value={redirectUrl}
             onChange={(e) => setRedirectUrl(e.target.value)}
-            className="flex-1 h-10 bg-transparent text-[#520400] placeholder-[#940600]/50 outline-none text-sm md:text-base"
+            className="flex-1 h-10 bg-transparent text-slate-900 placeholder-slate-900/50 outline-none text-sm md:text-base"
           />
         </div>
 
@@ -63,7 +63,7 @@ function CardEncurtador() {
         <button
           type="submit"
           disabled={isPending}
-          className="flex items-center gap-2 bg-white hover:bg-white/90 text-[#940600] font-semibold text-sm md:text-base px-5 h-10 rounded-full transition-colors disabled:opacity-60 disabled:cursor-not-allowed w-full justify-center items-center"
+          className="flex items-center gap-2 bg-white hover:bg-white/90 text-slate-900 font-semibold text-sm md:text-base px-5 h-10 rounded-full transition-colors disabled:opacity-60 disabled:cursor-not-allowed w-full justify-center items-center"
         >
           {isPending ? "Encurtando..." : "Encurtar"}
           <LightningBoltIcon />

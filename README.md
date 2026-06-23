@@ -40,4 +40,15 @@ A aplicação segue uma arquitetura cliente-servidor desacoplada. O frontend con
 
 ![Diagrama ER](frontend/src/assets/encurtaAeER.png)
 
+---
+
+## Screenshots
+
+![Home Page](frontend/src/assets/homePagePrint.jpeg)
+
+![Meus Links Page](frontend/src/assets/MeusLinksPage.jpeg)
+
+[ Outras telas ainda em Desenvolvimento...]
+---
+
 Feito por **Gusthavo Menezes** — [Confira meu LinkedIn](https://www.linkedin.com/in/gusthavomnz) ·
