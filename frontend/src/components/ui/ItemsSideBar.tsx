@@ -14,7 +14,7 @@ export function MenuComponentButtom({
 
     const navigate = useNavigate()
   return (
-    <div className="w-full bg-neutral-700 p-2 hover:bg-red-600" >
+    <div className="w-full p-2 hover:border-2 hover:border-purple-950 hover:rounded-2xl" >
        <div className={isClicked && "hover:bg-amber-300"}>
       <button className="flex flex-row items-center w-full gap-5" onClick={(e)=> navigate(redirect)}>
         <div className=" h-full">
