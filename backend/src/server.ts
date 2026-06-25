@@ -58,8 +58,12 @@ app.put('/alterarData', authMiddleware, async (req,res) => {
 });
 
 app.get('/:LinkEncurtado', async (req,res) => {
+
+const ip = req.ip ?? '';
+const userAgent = req.headers['user-agent'] ?? '';
+const referrer = req.headers['referer'] ?? '';
     try {
-        const redirectUrl = await linkServiceInstance.retornarLinkOriginal(req.params.LinkEncurtado)
+        const redirectUrl = await linkServiceInstance.retornarLinkOriginal(req.params.LinkEncurtado,ip,userAgent,referrer)
 
         if (!redirectUrl) {
             return res.status(404).json({error: "Link não encontrado"})

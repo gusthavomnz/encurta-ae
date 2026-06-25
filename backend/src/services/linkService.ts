@@ -5,6 +5,8 @@ import { updateLinkRequest} from "../types/Links"
 import axios from "axios";
 import 'dotenv/config';
 import QRCode from "qrcode";
+import geoip from 'geoip-lite';
+import { UAParser } from 'ua-parser-js';
 
 const QR_CODE_API = process.env.QR_CODE_API as string;
 
@@ -66,7 +68,7 @@ export class linkService {
         })
      }
 
-     async retornarLinkOriginal(urlEncurtada: string){
+     async retornarLinkOriginal(urlEncurtada: string, ip: string, userAgent: string, referrer: string){
         const objetoLink = await prisma.link.findUnique({
             where: {
                 shortCode: urlEncurtada
@@ -83,6 +85,20 @@ export class linkService {
                 clickCount: {
                     increment: 1
                 }
+            }
+        })
+
+         const geo = geoip.lookup(ip);
+    const parser = new UAParser(userAgent);
+    const device = parser.getDevice().type ?? 'desktop';
+
+        const click = await prisma.click.create({
+            data: {
+                device,
+                country: geo?.country ?? null, 
+                referrer: referrer ,
+                linkId: objetoLink.id
+
             }
         })
 

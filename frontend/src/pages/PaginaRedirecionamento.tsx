@@ -3,7 +3,9 @@
  import { useEffect } from "react";
  
  function PaginaRedirecionamento() {
-    const {code} = useParams()
+    const {code} = useParams();
+
+
 
     const navigate = useNavigate();
     const url_atual = window.location.origin;

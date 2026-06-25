@@ -14,8 +14,8 @@ export const postLink = async(data: createLinkRequest): Promise<any> => {
     return response.data;
 }
 
-export const searchOriginalLink = async(code: string): Promise<any> => {
-    const response = await api.get('/' + code)
+export const searchOriginalLink = async(urlEncurtada: string): Promise<any> => {
+    const response = await api.get('/' + urlEncurtada)
     return response.data;
 }
 
