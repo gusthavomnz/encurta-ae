@@ -105,4 +105,16 @@ export class linkService {
     return resultado.count > 0;
 }
 
+
+
+async LinkAnalytics(userId: string): Promise<any> {
+
+
+
+    return null;
+}
+
+
+
+
 };

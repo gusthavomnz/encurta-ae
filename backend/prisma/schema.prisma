@@ -33,6 +33,19 @@ model Link {
   clickCount Int      @default(0)
   userId      String
   user        User     @relation(fields: [userId], references: [id])
+  clicks      Click[]
 
   @@map("links")
+}
+model Click {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  referrer  String?
+  device    String?
+  country   String?
+  linkId    String
+  link      Link     @relation(fields: [linkId], references: [id])
+
+  @@index([linkId, createdAt])
+  @@map("clicks")
 }
