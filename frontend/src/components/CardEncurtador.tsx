@@ -21,7 +21,7 @@ function CardEncurtador() {
       return;
     }
 
-    mutate({ redirectUrl, expiresAt: new Date(expiresAt) });
+    mutate({ redirectUrl, expiresAt });
   };
 
   return (

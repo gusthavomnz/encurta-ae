@@ -9,7 +9,7 @@ import {
   BarChartIcon,
 } from "@radix-ui/react-icons";
 
-interface MenuComponentButtomProps {
+export interface MenuComponentButtomProps {
   nome: string;
   Icon: ElementType;
   redirect: string;

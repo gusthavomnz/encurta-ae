@@ -1,6 +1,6 @@
 export interface createLinkRequest{
     redirectUrl: string,
-    expiresAt: Date
+    expiresAt: string
 }
 
 export interface allLinkRequest {
@@ -12,7 +12,7 @@ export interface getLinkRequest {
     shortCode: string
     redirectUrl: string
     clickCount: number
-    expiresAt: Date
+    expiresAt: string
 }
 
 export interface updateDateLinkRequest {

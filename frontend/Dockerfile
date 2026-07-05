@@ -10,13 +10,7 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-
-
-RUN npx prisma generate
 RUN npm run build
-
-# Limpa as devDependencies deixando apenas o que roda em produção
-RUN npm prune --production
 
 
 
