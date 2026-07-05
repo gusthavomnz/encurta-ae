@@ -1,6 +1,6 @@
 import { ButtonIcon } from "@radix-ui/react-icons";
 import { useState, type ElementType } from "react";
-import type MenuComponentButtomProps from "../LeftSideBar";
+import type { MenuComponentButtomProps } from "../LeftSideBar";
 
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export function MenuComponentButtom({
     const navigate = useNavigate()
   return (
     <div className="w-full p-2 hover:border-2 hover:border-slate-800  hover:rounded-2xl" >
-       <div className={isClicked && "hover:bg-slate-800 "}>
+       <div className={isClicked ? "hover:bg-slate-800 " : undefined}>
       <button className="flex flex-row items-center w-full gap-5" onClick={(e)=> navigate(redirect)}>
         <div className=" h-full">
           <Icon />

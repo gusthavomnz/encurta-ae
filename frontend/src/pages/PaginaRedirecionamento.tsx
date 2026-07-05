@@ -13,6 +13,7 @@
    useEffect(() => {
         const fetchAndRedirect = async () => {
             try {
+                if (!code) { navigate('/404'); return; }
                 const data = await searchOriginalLink(code);
                 if (data == null) {
                     navigate('/404')
