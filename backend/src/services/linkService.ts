@@ -18,7 +18,7 @@ export class linkService {
         const linkCriado = await prisma.link.create({
             data:{
             redirectUrl,
-            expiresAt,
+            expiresAt: new Date(expiresAt),
             shortCode,
             userId
          }

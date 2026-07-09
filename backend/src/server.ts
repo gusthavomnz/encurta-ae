@@ -43,9 +43,13 @@ app.post('/encurtar', authMiddleware, async (req, res) => {
 });
 
 app.get('/allLinks', authMiddleware, async (req, res) => {
-  const allLinks =  await linkServiceInstance.getAllLinksByUserId((req as any).userId)
-  return res.status(201).json({Links: allLinks})
-
+  try {
+    const allLinks =  await linkServiceInstance.getAllLinksByUserId((req as any).userId)
+    return res.status(200).json({Links: allLinks})
+  } catch (error) {
+    console.error(error)
+    return res.status(400).json({error: "Erro ao listar links."})
+  }
 });
 
 app.put('/alterarData', authMiddleware, async (req,res) => {
