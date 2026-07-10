@@ -3,6 +3,7 @@ import cors from 'cors';
 import { UserService } from './services/userService';
 import { linkService } from './services/linkService';
 import { authMiddleware } from './middleware/authMiddleware';
+import { alterarSenhaRequest } from './types/Auth';
 
 const app = express();
 app.use(cors());
@@ -95,6 +96,23 @@ app.delete('/delete', authMiddleware, async (req,res) => {
     return res.status(400).json({ifDelete})
   }
 
+});
+
+
+app.put('/alterarSenha', authMiddleware, async (req,res) => {
+  try {
+    const { senhaAntiga, novaSenha } = req.body;
+    const userId = (req as any).userId;
+    const dados: alterarSenhaRequest = { userId, senhaAntiga, novaSenha };
+    const resultado = await userService.alterarSenha(dados);
+    if (resultado) {
+      return res.status(200).json({ message: "Senha alterada com sucesso!" });  
+    } else {
+      return res.status(400).json({ error: "Erro ao alterar senha. Verifique se a senha antiga está correta." });
+    }
+  } catch (error) {
+    return res.status(400).json({ error: "Erro ao alterar senha." });
+  }
 });
 
 const PORT = 3333;

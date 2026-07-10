@@ -21,7 +21,7 @@ function PaginaProfile() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            {/* Dados Pessoais */}
+
             <div className="bg-white rounded-2xl p-6 shadow-lg shadow-black/20 flex flex-col gap-5">
               <h2 className="text-lg font-semibold text-slate-800">Dados Pessoais</h2>
 
@@ -50,7 +50,7 @@ function PaginaProfile() {
               </div>
             </div>
 
-            {/* Alterar Senha */}
+
             <div className="bg-white rounded-2xl p-6 shadow-lg shadow-black/20 flex flex-col gap-5">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-slate-800">Alterar Senha</h2>
@@ -83,7 +83,7 @@ function PaginaProfile() {
             </div>
           </div>
 
-          {/* Preferências */}
+
           <div className="bg-white rounded-2xl p-6 shadow-lg shadow-black/20 flex flex-col gap-5 mb-6">
             <h2 className="text-lg font-semibold text-slate-800">Preferências</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
@@ -106,7 +106,7 @@ function PaginaProfile() {
             </div>
           </div>
 
-          {/* Ações */}
+
           <div className="flex gap-4">
             <button className="flex-1 h-11 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors">
               Salvar alterações

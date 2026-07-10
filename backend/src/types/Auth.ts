@@ -19,3 +19,9 @@ export interface LoginUserResponse {
     name: string;
 }
 
+export interface alterarSenhaRequest {
+    userId: string;
+    senhaAntiga: string;
+    novaSenha: string;
+}
+

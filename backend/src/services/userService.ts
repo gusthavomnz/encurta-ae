@@ -3,6 +3,7 @@ import { RegisterUserRequest } from "../types/Auth";
 import { RegisterUserResponse } from "../types/Auth";
 import { LoginUserRequest } from "../types/Auth";
 import { LoginUserResponse } from "../types/Auth"
+import { alterarSenhaRequest } from "../types/Auth";
 
 export class UserService {
 
@@ -39,4 +40,22 @@ export class UserService {
         return loginResponse;
     }
 
+    async alterarSenha(data: alterarSenhaRequest){
+        try {
+            const resultado = await prisma.user.updateMany({
+                where: {
+                    id: data.userId,
+                    password: data.senhaAntiga
+                },
+                data: {
+                    password: data.novaSenha
+                }
+            });
+
+            return resultado.count > 0;
+
+        } catch(error){
+            return false;
+        }
+    }
 }
