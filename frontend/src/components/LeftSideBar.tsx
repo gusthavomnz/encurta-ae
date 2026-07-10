@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 import {
   PersonIcon,
-  GearIcon,
   LayersIcon,
   HomeIcon,
   BarChartIcon,
@@ -77,14 +76,15 @@ export function LeftMenu() {
       <div className="w-full h-0.5 bg-neutral-900/30 mt-2 mb-2"></div>
 
       <div className=" absolute flex flex-col w-full gap-2 font-sans text-xl flex mb-8 p-2">
-        <div className="flex flex-row gap-2 items-center">
-          <PersonIcon />
-          <h1> {user.name || "Usuário"} </h1>
-        </div>
-
-        <div className="flex flex-row gap-2 items-center ">
-          <GearIcon />
-          <h1> Configurações </h1>
+        <div
+          className="flex flex-row gap-3 items-center cursor-pointer hover:opacity-70"
+          onClick={() => navigate('/profile')}
+        >
+          <PersonIcon width={32} height={32} />
+          <div className="flex flex-col leading-tight">
+            <h1> {user.name || "Usuário"} </h1>
+            <span className="text-xs text-gray-400">Editar perfil</span>
+          </div>
         </div>
 
         <div>
