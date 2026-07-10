@@ -1,6 +1,7 @@
 import { MenuComponentButtom } from "./ui/ItemsSideBar";
 import { StarIcon } from "@radix-ui/react-icons";
 import { ElementType } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 import {
   PersonIcon,
@@ -18,7 +19,9 @@ export interface MenuComponentButtomProps {
 }
 
 export function LeftMenu() {
-  const { user } = useUser()
+  const { user, logout } = useUser()
+  const navigate = useNavigate()
+
   const menuItems: MenuComponentButtomProps[] = [
     { nome: "Home Page", Icon: HomeIcon, redirect: "/home", isClicked: false },
     {
@@ -40,6 +43,12 @@ export function LeftMenu() {
       isClicked: false,
     },
   ];
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
+
 
   return (
     <div className="md:h-full  md:w-1/8 h-1/12 w-full bg-white z-1 top-0 left-0 p-2 overflow-hidden border-r-2 border-gray-700 shrink-0">
@@ -76,6 +85,12 @@ export function LeftMenu() {
         <div className="flex flex-row gap-2 items-center ">
           <GearIcon />
           <h1> Configurações </h1>
+        </div>
+
+        <div>
+          <button onClick={handleLogout} className="flex flex-row gap-2 items-center text-red-600 w-full">
+            Sair
+          </button>
         </div>
       </div>
     </div>
