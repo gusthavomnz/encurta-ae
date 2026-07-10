@@ -4,6 +4,7 @@ import ConfirmButton from './ui/ConfirmBotton'
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import { useRegister } from '../hooks/useRegister'
+import { useUser } from '../contexts/UserContext'
 
 
 
@@ -23,13 +24,15 @@ function CardRegister () {
 } = useRegister()
 
 const navigate = useNavigate()
+const { setUser } = useUser()
 
 useEffect(() => {
   if (isSuccess && data) {
     localStorage.setItem('userId', data.userId)
+    setUser({ userId: data.userId, name })
     navigate('/home')
   }
-},[isSuccess, data, navigate])
+},[isSuccess, data, navigate, name, setUser])
 
 
 

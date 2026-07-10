@@ -1,6 +1,7 @@
 import { MenuComponentButtom } from "./ui/ItemsSideBar";
 import { StarIcon } from "@radix-ui/react-icons";
 import { ElementType } from "react";
+import { useUser } from "../contexts/UserContext";
 import {
   PersonIcon,
   GearIcon,
@@ -17,6 +18,7 @@ export interface MenuComponentButtomProps {
 }
 
 export function LeftMenu() {
+  const { user } = useUser()
   const menuItems: MenuComponentButtomProps[] = [
     { nome: "Home Page", Icon: HomeIcon, redirect: "/home", isClicked: false },
     {
@@ -68,7 +70,7 @@ export function LeftMenu() {
       <div className=" absolute flex flex-col w-full gap-2 font-sans text-xl flex mb-8 p-2">
         <div className="flex flex-row gap-2 items-center">
           <PersonIcon />
-          <h1> José Gusthavo </h1>
+          <h1> {user.name || "Usuário"} </h1>
         </div>
 
         <div className="flex flex-row gap-2 items-center ">

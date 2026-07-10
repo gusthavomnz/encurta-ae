@@ -4,6 +4,7 @@ import InputField from './ui/InputField'
 import {Link, useNavigate} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useLogin} from '../hooks/useLoginData'
+import { useUser } from '../contexts/UserContext'
 import React from "react";
 
 function CardLogin() {
@@ -11,10 +12,12 @@ function CardLogin() {
   const [email, setEmail] = useState('')
   const [password, setSenha] = useState('')
   const { mutate, isPending, isError, isSuccess, data } = useLogin()
+  const { setUser } = useUser()
 
 useEffect(() => {
   if (isSuccess && data?.userId) {
     localStorage.setItem('userId', data.userId)
+    setUser({ userId: data.userId, name: data.name ?? '' })
     navigate('/home')
   }
 },[isSuccess, data, navigate])
