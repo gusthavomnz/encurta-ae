@@ -26,7 +26,7 @@ app.post('/registrar', async (req, res) => {
 app.post('/login', async(req,res) => {
   try {
     const userLogado = await userService.loginUser(req.body);
-    return res.status(200).json({ message: "Usuario logado!", userId: userLogado.userId});
+    return res.status(200).json({ message: "Usuario logado!", userId: userLogado.userId, name: userLogado.name });
   }
   catch(error){
     return res.status(400).json({ error: "Erro ao logar."});

@@ -6,6 +6,7 @@ export interface LoginUserRequest {
 
 export interface LoginUserResponse {
     userId: string
+    name: string
 }
 
 export interface RegisterUserRequest {

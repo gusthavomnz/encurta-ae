@@ -32,7 +32,8 @@ export class UserService {
         })
 
         const loginResponse: LoginUserResponse = {
-            userId: userLogado.id
+            userId: userLogado.id,
+            name: userLogado.name
         }
 
         return loginResponse;
