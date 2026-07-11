@@ -1,8 +1,30 @@
 import LeftMenu from "../components/LeftSideBar";
 import { PersonIcon, LockClosedIcon, EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { Toggle } from "../components/ui/Toggle";
+import {useEditPassword} from "../hooks/useEditPassword";
+import { useState } from "react";
+import { alterarSenhaRequest } from "../types/Auth";
 
 function PaginaProfile() {
+
+
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const { mutate, isPending, isError, isSuccess } = useEditPassword();
+
+ const handleSubmitNewPassword = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!currentPassword || !newPassword) {
+      alert('Por favor, preencha todos os campos.')
+      return
+    }
+    mutate({ senhaAntiga: currentPassword, novaSenha: newPassword } as alterarSenhaRequest)
+  }
+
+
+
+
+
 
   return (
     <div className="flex flex-row w-screen h-screen bg-slate-900">
@@ -48,8 +70,11 @@ function PaginaProfile() {
                   <LockClosedIcon className="text-gray-300 shrink-0 w-4 h-4" />
                 </div>
               </div>
-            </div>
 
+              <button onClick={() => console.log('clicou')} className="w-full h-11 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors mt-2">
+                Alterar nome
+              </button>
+            </div>
 
             <div className="bg-white rounded-2xl p-6 shadow-lg shadow-black/20 flex flex-col gap-5">
               <div className="flex items-center justify-between">
@@ -61,7 +86,7 @@ function PaginaProfile() {
                 <label className="text-sm text-gray-500 font-medium">Senha atual</label>
                 <div className="flex items-center gap-2 w-full h-11 px-4 bg-gray-100 rounded-lg">
                   <LockClosedIcon className="text-gray-400 shrink-0" />
-                  <input type="password" placeholder="Senha atual" className="flex-1 bg-transparent text-slate-800 outline-none placeholder:text-gray-400" />
+                  <input type="password" placeholder="Senha atual" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} className="flex-1 bg-transparent text-slate-800 outline-none placeholder:text-gray-400" />
                 </div>
               </div>
 
@@ -69,17 +94,13 @@ function PaginaProfile() {
                 <label className="text-sm text-gray-500 font-medium">Nova senha</label>
                 <div className="flex items-center gap-2 w-full h-11 px-4 bg-gray-100 rounded-lg">
                   <LockClosedIcon className="text-gray-400 shrink-0" />
-                  <input type="password" placeholder="Nova senha" className="flex-1 bg-transparent text-slate-800 outline-none placeholder:text-gray-400" />
+                  <input type="password" placeholder="Nova senha" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="flex-1 bg-transparent text-slate-800 outline-none placeholder:text-gray-400" />
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label className="text-sm text-gray-500 font-medium">Confirmar nova senha</label>
-                <div className="flex items-center gap-2 w-full h-11 px-4 bg-gray-100 rounded-lg">
-                  <LockClosedIcon className="text-gray-400 shrink-0" />
-                  <input type="password" placeholder="Confirme a senha" className="flex-1 bg-transparent text-slate-800 outline-none placeholder:text-gray-400" />
-                </div>
-              </div>
+              <button onClick={handleSubmitNewPassword} className="w-full h-11 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors mt-2">
+                Alterar senha
+              </button>
             </div>
           </div>
 
@@ -108,9 +129,6 @@ function PaginaProfile() {
 
 
           <div className="flex gap-4">
-            <button className="flex-1 h-11 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors">
-              Salvar alterações
-            </button>
             <button className="flex-1 h-11 bg-red-50 hover:bg-red-100 text-red-600 font-medium rounded-lg transition-colors">
               Excluir conta
             </button>
