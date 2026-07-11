@@ -82,7 +82,7 @@ export function LeftMenu() {
         >
           <PersonIcon width={32} height={32} />
           <div className="flex flex-col leading-tight">
-            <h1> {user.name || "Usuário"} </h1>
+            <h1> {user.name || "U"} </h1>
             <span className="text-xs text-gray-400">Editar perfil</span>
           </div>
         </div>

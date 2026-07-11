@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { fetchUsuarioRequest } from "../services/authService";
 
 interface User {
   userId: string;
@@ -7,22 +8,32 @@ interface User {
 
 interface UserContextType {
   user: User;
-  setUser: (user: User) => void;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
   logout: () => void;
 }
 
 const UserContext = createContext({} as UserContextType);
 
 export function UserProvider({ children }: { children: ReactNode }) {
-  const logout = () => {
-    localStorage.removeItem("userId");
-    setUser({ userId: "", name: "" });
-  }
-
   const [user, setUser] = useState<User>(() => ({
     userId: localStorage.getItem("userId") ?? "",
     name: "",
   }));
+
+  useEffect(() => {
+    if (user.userId && !user.name) {
+      fetchUsuarioRequest()
+        .then((data) => {
+          setUser((prev) => ({ ...prev, name: data.name }));
+        })
+        .catch(() => {});
+    }
+  }, [user.userId, user.name]);
+
+  const logout = () => {
+    localStorage.removeItem("userId");
+    setUser({ userId: "", name: "" });
+  }
 
   return (
     <UserContext.Provider value={{ user, setUser, logout }}>
@@ -35,4 +46,3 @@ export function UserProvider({ children }: { children: ReactNode }) {
 export function useUser() {
   return useContext(UserContext);
 }
-

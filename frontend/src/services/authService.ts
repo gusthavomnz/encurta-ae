@@ -25,3 +25,8 @@ export const fetchAlterarNomeRequest = async(data: any): Promise<any> => {
     const response = await api.put('/alterarNome', data)
     return response.data;
 }
+
+export const fetchUsuarioRequest = async(): Promise<{ userId: string, name: string, email: string }> => {
+    const response = await api.get('/usuario')
+    return response.data;
+}

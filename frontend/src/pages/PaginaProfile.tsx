@@ -5,6 +5,7 @@ import {useEditPassword} from "../hooks/useEditPassword";
 import { useState } from "react";
 import { alterarSenhaRequest, alterarNomeRequest } from "../types/Auth";
 import {useEditName} from "../hooks/useEditName";
+import { useUser } from "../contexts/UserContext";
 
 function PaginaProfile() {
 
@@ -14,6 +15,7 @@ function PaginaProfile() {
   const { mutate: mutateSenha, isPending, isError, isSuccess } = useEditPassword();
 
   const { mutate: mutateNome } = useEditName();
+  const { setUser } = useUser();
 
  const handleSubmitNewPassword = (e: React.FormEvent) => {
     e.preventDefault()
@@ -34,7 +36,11 @@ function PaginaProfile() {
       alert('Por favor, preencha o campo de nome.')
       return
     }
-    mutateNome({novoNome: name} as alterarNomeRequest)
+    mutateNome({novoNome: name} as alterarNomeRequest, {
+      onSuccess: () => {
+        setUser((prev) => ({ ...prev, name }));
+      }
+    })
   }
 
 

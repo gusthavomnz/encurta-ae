@@ -5,6 +5,7 @@ import { linkService } from './services/linkService';
 import { authMiddleware } from './middleware/authMiddleware';
 import { alterarSenhaRequest } from './types/Auth';
 import { alterarNomeRequest } from './types/Auth';
+import { prisma } from './config/database';
 
 const app = express();
 app.use(cors());
@@ -129,6 +130,22 @@ app.put('/alterarNome', authMiddleware, async (req, res) => {
     }
   } catch (error) {
     return res.status(400).json({ error: "Erro ao alterar nome." });
+  }
+});
+
+app.get('/usuario', authMiddleware, async (req, res) => {
+  try {
+    const userId = (req as any).userId;
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, name: true, email: true },
+    });
+    if (!user) {
+      return res.status(404).json({ error: "Usuário não encontrado." });
+    }
+    return res.status(200).json({ userId: user.id, name: user.name, email: user.email });
+  } catch (error) {
+    return res.status(400).json({ error: "Erro ao buscar usuário." });
   }
 });
 
