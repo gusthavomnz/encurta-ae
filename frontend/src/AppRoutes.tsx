@@ -8,6 +8,7 @@ import PaginaRedirecionamento from "./pages/PaginaRedirecionamento";
 import PaginaMeusLinks from "./pages/PaginaMeusLinks";
 import PaginaLinksBio from "./pages/PaginaLinksBio";
 import PaginaEstatisticas from "./pages/PaginaEstatisticas";
+import PaginaProfile from "./pages/PaginaProfile";
 
 function AppRoutes() {
 
@@ -24,6 +25,7 @@ return (
         <Route path="/estatisticas" element={<PaginaEstatisticas/>}/>
         <Route element={<AuthGuard />}>
             <Route path="/home" element={<PaginaPrincipal/>} />
+            <Route path="/profile" element={<PaginaProfile/>} />
         </Route>
     </Routes> 
 </BrowserRouter>

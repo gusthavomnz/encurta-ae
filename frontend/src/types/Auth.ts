@@ -18,5 +18,14 @@ export interface RegisterUserRequest {
 export interface RegisterUserResponse {
     message: string,
     userId: string
+}
 
+export interface alterarSenhaRequest {
+    userId: string,
+    senhaAntiga: string,
+    novaSenha: string
+}
+
+export interface alterarNomeRequest {
+    novoNome: string
 }
