@@ -27,6 +27,5 @@ export interface alterarSenhaRequest {
 }
 
 export interface alterarNomeRequest {
-    userId: string,
     novoNome: string
 }

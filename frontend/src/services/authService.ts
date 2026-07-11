@@ -19,3 +19,9 @@ export const fetchAlterarSenhaRequest = async(data: alterarSenhaRequest): Promis
     const response = await api.put('/alterarSenha', data)
     return response.data;
 }
+
+
+export const fetchAlterarNomeRequest = async(data: any): Promise<any> => {
+    const response = await api.put('/alterarNome', data)
+    return response.data;
+}

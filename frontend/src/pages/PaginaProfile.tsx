@@ -3,14 +3,17 @@ import { PersonIcon, LockClosedIcon, EnvelopeClosedIcon } from "@radix-ui/react-
 import { Toggle } from "../components/ui/Toggle";
 import {useEditPassword} from "../hooks/useEditPassword";
 import { useState } from "react";
-import { alterarSenhaRequest } from "../types/Auth";
+import { alterarSenhaRequest, alterarNomeRequest } from "../types/Auth";
+import {useEditName} from "../hooks/useEditName";
 
 function PaginaProfile() {
 
 
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const { mutate, isPending, isError, isSuccess } = useEditPassword();
+  const { mutate: mutateSenha, isPending, isError, isSuccess } = useEditPassword();
+
+  const { mutate: mutateNome } = useEditName();
 
  const handleSubmitNewPassword = (e: React.FormEvent) => {
     e.preventDefault()
@@ -18,7 +21,20 @@ function PaginaProfile() {
       alert('Por favor, preencha todos os campos.')
       return
     }
-    mutate({ senhaAntiga: currentPassword, novaSenha: newPassword } as alterarSenhaRequest)
+    mutateSenha({ senhaAntiga: currentPassword, novaSenha: newPassword } as alterarSenhaRequest)
+  }
+
+
+  const [name, setName] = useState("");
+
+
+  const handleSubmitNewName = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!name) {
+      alert('Por favor, preencha o campo de nome.')
+      return
+    }
+    mutateNome({novoNome: name} as alterarNomeRequest)
   }
 
 
@@ -52,6 +68,8 @@ function PaginaProfile() {
                 <input
                   type="text"
                   placeholder="Seu nome"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full h-11 px-4 bg-gray-100 rounded-lg text-slate-800 outline-none focus:ring-2 focus:ring-slate-400 transition-shadow placeholder:text-gray-400"
                 />
                 <span className="text-xs text-amber-600">Você pode alterar seu nome a cada 30 dias</span>
@@ -71,7 +89,7 @@ function PaginaProfile() {
                 </div>
               </div>
 
-              <button onClick={() => console.log('clicou')} className="w-full h-11 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors mt-2">
+              <button onClick={handleSubmitNewName} className="w-full h-11 bg-gray-700 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors mt-2">
                 Alterar nome
               </button>
             </div>
