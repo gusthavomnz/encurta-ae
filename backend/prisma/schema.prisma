@@ -20,8 +20,22 @@ model User {
   updatedAt DateTime @updatedAt
 
   links     Link[]
+  changes   UserChangeLog[]
 
   @@map("users")
+}
+
+model UserChangeLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String
+  oldValue  String
+  newValue  String
+  changedAt DateTime @default(now())
+
+  @@index([userId, type])
+  @@map("user_change_logs")
 }
 
 model Link {

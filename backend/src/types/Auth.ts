@@ -25,3 +25,8 @@ export interface alterarSenhaRequest {
     novaSenha: string;
 }
 
+export interface alterarNomeRequest {
+    userId: string;
+    novoNome: string;
+}
+
